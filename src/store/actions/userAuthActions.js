@@ -53,7 +53,7 @@ export const singout = () => {
 	};
 };
 
-export const checkForToken = () => (dispatch) => {
+export const checkForTokenUser = () => (dispatch) => {
 	const token = localStorage.getItem('myToken');
 	if (token) {
 		const user = decode(token);
