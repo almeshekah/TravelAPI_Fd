@@ -1,9 +1,9 @@
 import React from 'react';
-import Home from './components/Home';
+import Routes from "./components/Routes";
 function App() {
 	return (
 		<>
-			<Home />
+			<Routes />
 		</>
 	);
 }
@@ -11,3 +11,5 @@ function App() {
 export default App;
 
 //yarn add styled-components
+// yarn add react-router-dom react-helmet react-redux react-router redux redux-thunk thunk axios
+// yarn add react-hook-form
