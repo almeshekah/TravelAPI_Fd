@@ -1,9 +1,11 @@
 import React from 'react';
-import Home from './components/Home';
+import NavBar from './components/NavBar';
+import Routes from './components/Routes';
 function App() {
 	return (
 		<>
-			<Home />
+			<NavBar />
+			<Routes />
 		</>
 	);
 }
