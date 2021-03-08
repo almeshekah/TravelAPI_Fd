@@ -1,8 +1,10 @@
 import React from 'react';
-import Routes from "./components/Routes";
+import NavBar from './components/NavBar';
+import Routes from './components/Routes';
 function App() {
 	return (
 		<>
+			<NavBar />
 			<Routes />
 		</>
 	);
