@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
     case FETCH_DESTINATIONS:
       return {
         ...state,
-        destinations: action,
+        destinations: action.payload,
         destinationLoading: false,
       };
     default:

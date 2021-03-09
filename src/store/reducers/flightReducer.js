@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
     case SEARCH_FLIGHT:
       return {
         ...state,
-        flights: action,
+        flights: action.payload,
       };
     default:
       return state;
