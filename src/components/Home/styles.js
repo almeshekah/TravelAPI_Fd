@@ -17,9 +17,4 @@ export const Title = styled.h1`
   text-align: center;
 `;
 
-export const StyledFlightSearch = styled(FlightSearch)`
-  position: absolute;
-  top: 35px;
-  left: 25%;
-  width: 100vw;
-`;
+export const StyledFlightSearch = styled(FlightSearch)``;

@@ -15,3 +15,17 @@ export const fetchFlight = () => {
     }
   };
 };
+
+export const searchFlights = (filter) => {
+  return async (dispatch) => {
+    try {
+      const res = await instance.get("/flights/search", filter);
+      dispatch({
+        type: FETCH_FLIGHT,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
