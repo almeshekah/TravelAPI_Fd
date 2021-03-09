@@ -1,4 +1,9 @@
-import { FETCH_FLIGHT, CREATE_FLIGHT, UPDATE_FLIGHT } from "../actions/types";
+import {
+  FETCH_FLIGHT,
+  CREATE_FLIGHT,
+  UPDATE_FLIGHT,
+  SEARCH_FLIGHT,
+} from "../actions/types";
 
 import instance from "./instance";
 
@@ -16,12 +21,13 @@ export const fetchFlight = () => {
   };
 };
 
-export const searchFlights = (filter) => {
+export const searchFlight = (filter) => {
   return async (dispatch) => {
     try {
-      const res = await instance.get("/flights/search", filter);
+      console.log({ ...filter });
+      const res = await instance.post("/flights/search", filter);
       dispatch({
-        type: FETCH_FLIGHT,
+        type: SEARCH_FLIGHT,
         payload: res.data,
       });
     } catch (error) {

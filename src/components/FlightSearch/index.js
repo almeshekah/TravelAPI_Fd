@@ -1,18 +1,21 @@
 import { addDays } from "date-fns";
 import { useState } from "react";
-import { Search, People } from "@material-ui/icons/";
+import { Search, People, FlightLand, FlightTakeoff } from "@material-ui/icons/";
 import { DateRangePicker } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
 import { StyledFormControl } from "./styles";
 import Select from "react-select";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading";
+import { searchFlight } from "../../store/actions/flightActions";
+
 const FlightSearch = () => {
   const { destinations, destinationLoading } = useSelector(
     (state) => state.destinationReducer
   );
+  const dispatch = useDispatch();
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -57,6 +60,13 @@ const FlightSearch = () => {
       departureDate: date[0].startDate.toJSON().slice(0, 10),
       arrivalDate: date[0].endDate.toJSON().slice(0, 10),
     });
+    dispatch(
+      searchFlight({
+        ...filter,
+        departureDate: date[0].startDate.toJSON().slice(0, 10),
+        arrivalDate: date[0].endDate.toJSON().slice(0, 10),
+      })
+    );
   };
   return (
     <StyledFormControl>
@@ -80,7 +90,7 @@ const FlightSearch = () => {
         onChange={(event) => setPassangers(event.target.value)}
       />
       <h3 htmlFor="my-input">
-        Departure Airport <People />
+        Departure Airport <FlightTakeoff />
       </h3>
       <Select
         value={options.departureAirport}
@@ -88,7 +98,7 @@ const FlightSearch = () => {
         options={departureOptions}
       />
       <h3 htmlFor="my-input">
-        Arrival Airport <People />
+        Arrival Airport <FlightLand />
       </h3>
       <Select
         value={options.arrivalAirport}
