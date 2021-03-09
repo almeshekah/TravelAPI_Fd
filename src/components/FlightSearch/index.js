@@ -8,6 +8,7 @@ import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
 import { StyledFormControl } from "./styles";
 import Select from "react-select";
 import { useSelector } from "react-redux";
+import Loading from "../Loading";
 const FlightSearch = () => {
   const { destinations, destinationLoading } = useSelector(
     (state) => state.destinationReducer
@@ -15,29 +16,55 @@ const FlightSearch = () => {
   const [date, setDate] = useState([
     {
       startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      endDate: addDays(new Date(), 1),
       key: "selection",
     },
   ]);
   const [passangers, setPassangers] = useState(2);
-  const [options, setOptions] = useState(null);
-  const _options = destinations.map((destination) => {
-    return { value: destination.location, label: destination.airport };
+  const [options, setOptions] = useState({
+    arrivalAirport: null,
+    departureAirport: null,
   });
-  const handleChange = (selectedOption) => {
-    setOptions(selectedOption);
-    console.log(`Option selected:`, selectedOption);
+  const [filter, setFilter] = useState({
+    passangers: 2,
+    arrivalAirport: "",
+    departureAirport: "",
+  });
+  if (destinationLoading) return <Loading />;
+
+  const departureOptions = destinations.map((destination) => ({
+    value: destination.airport,
+    label: `${destination.location} (${destination.airport})`,
+    name: "departureAirport",
+  }));
+  const arrivalOptions = departureOptions.map((option) => ({
+    ...option,
+    name: "arrivalAirport",
+  }));
+
+  const handleOptions = (selectedOption) => {
+    console.log(selectedOption);
+    setOptions({ ...options, [selectedOption.name]: selectedOption });
+    setFilter({ ...filter, [selectedOption.name]: selectedOption.value });
+  };
+  const handleChange = (event) => {
+    setFilter({ ...filter, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = () => {};
-  console.log(date, passangers);
+  const handleSubmit = () => {
+    console.log({
+      ...filter,
+      departureDate: date[0].startDate.toJSON().slice(0, 10),
+      arrivalDate: date[0].endDate.toJSON().slice(0, 10),
+    });
+  };
   return (
     <StyledFormControl>
       <DateRangePicker
         onChange={(item) => setDate([item.selection])}
         showSelectionPreview={true}
         moveRangeOnFirstSelection={false}
-        months={2}
+        months={1}
         ranges={date}
         direction="horizontal"
       />
@@ -48,14 +75,25 @@ const FlightSearch = () => {
         id="my-input"
         min={1}
         type="number"
+        name="passangers"
         value={passangers}
         onChange={(event) => setPassangers(event.target.value)}
       />
+      <h3 htmlFor="my-input">
+        Departure Airport <People />
+      </h3>
       <Select
-        isMulti={true}
-        value={options}
-        onChange={handleChange}
-        options={_options}
+        value={options.departureAirport}
+        onChange={handleOptions}
+        options={departureOptions}
+      />
+      <h3 htmlFor="my-input">
+        Arrival Airport <People />
+      </h3>
+      <Select
+        value={options.arrivalAirport}
+        onChange={handleOptions}
+        options={arrivalOptions}
       />
       <Button
         variant="contained"
