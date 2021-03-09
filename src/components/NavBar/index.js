@@ -16,6 +16,9 @@ const NaveBar = () => {
             <NavbarLink to="/">Home</NavbarLink>
           </NavBarliStyled>
           <NavBarliStyled>
+            <NavbarLink to="/flights">Flights</NavbarLink>
+          </NavBarliStyled>
+          <NavBarliStyled>
             <NavbarLink to="/usersignup">Signup</NavbarLink>
           </NavBarliStyled>
           <NavBarliStyled>
