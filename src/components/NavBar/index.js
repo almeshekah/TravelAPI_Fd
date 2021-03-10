@@ -19,6 +19,9 @@ const NaveBar = () => {
             <NavbarLink to="/flights">Flights</NavbarLink>
           </NavBarliStyled>
           <NavBarliStyled>
+            <NavbarLink to="/airlines">Airlines</NavbarLink>
+          </NavBarliStyled>
+          <NavBarliStyled>
             <NavbarLink to="/usersignup">Signup</NavbarLink>
           </NavBarliStyled>
           <NavBarliStyled>
