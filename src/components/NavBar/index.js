@@ -9,6 +9,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { singout } from '../../store/actions/userAuthActions';
 const NaveBar = () => {
+
 	const user = useSelector((state) => state.userAuthReducer.user);
 	const dispatch = useDispatch();
 	return (
@@ -22,6 +23,9 @@ const NaveBar = () => {
 					<NavBarliStyled>
 						<NavbarLink to="/flights">Flights</NavbarLink>
 					</NavBarliStyled>
+              <NavBarliStyled>
+            <NavbarLink to="/airlines">Airlines</NavbarLink>
+          </NavBarliStyled>
 					{user ? (
 						<>
 							<UsernameStyled>welcome , {user.username}! </UsernameStyled>

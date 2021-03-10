@@ -8,9 +8,13 @@ import UserSignup from "../UserSignup";
 import AirlineSignup from "../AirlineSignup";
 import AirlineSignin from "../AirlineSignin";
 import FlightList from "../FlightList";
+import AirlineList from "../AirlineList";
+import FlightAdd from "../FlightAdd";
+import AirlineDetail from "../AirlineDetail";
 
 const Routes = () => {
   const flights = useSelector((state) => state.flightReducer.flights);
+  const airlines = useSelector((state) => state.airlineReducer.airlines);
 
   return (
     <Switch>
@@ -26,9 +30,23 @@ const Routes = () => {
       <Route path="/airlinesignin">
         <AirlineSignin />
       </Route>
+
+      <Route path="/airlines/:airlineId/flights/new">
+        <FlightAdd />
+      </Route>
+
+      <Route path="/airlines/:airlineSlug">
+        <AirlineDetail flights={flights} />
+      </Route>
+
       <Route path="/flights">
         <FlightList flights={flights} />
       </Route>
+
+      <Route path="/airlines">
+        <AirlineList airlines={airlines} />
+      </Route>
+
       <Route path="/">
         <Home />
       </Route>

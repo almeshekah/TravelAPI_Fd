@@ -18,6 +18,14 @@ const reducer = (state = initialState, action) => {
         flights: action.payload.flights,
         // loading: false,
       };
+    case CREATE_FLIGHT:
+      const { newFlight } = action.payload;
+      return {
+        ...state,
+        flights: [...state.flights, newFlight],
+      };
+
+
     case SEARCH_FLIGHT:
       return {
         ...state,
