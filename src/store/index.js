@@ -6,11 +6,12 @@ import { checkForToken } from "./actions/authActions";
 import { fetchFlight } from "./actions/flightActions";
 import { fetchDestinations } from "./actions/destinationActions";
 
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
+	rootReducer,
+	composeEnhancers(applyMiddleware(thunk))
 );
 store.dispatch(checkForToken());
 store.dispatch(checkForTokenUser());
