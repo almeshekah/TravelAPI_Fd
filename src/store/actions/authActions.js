@@ -44,6 +44,7 @@ export const signin = (user, history) => {
   };
 };
 
+// REVIEW: Better naming: signout
 export const singout = () => {
   localStorage.removeItem("myToken");
   delete instance.defaults.headers.common.Authorization;

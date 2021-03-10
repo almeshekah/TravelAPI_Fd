@@ -18,6 +18,7 @@ const Home = () => {
         src="https://mydigitaloffice.com/wp-content/uploads/2020/11/travel.png"
         alt="Home page"
       ></HomeImage>
+      {/* // REVIEW: Image is a self closing tag */}
     </div>
   );
 };

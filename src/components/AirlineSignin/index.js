@@ -27,6 +27,7 @@ const AirlineSignin = () => {
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
+    //REVIEW: This can be cleaned up to !passwordShown directly instead of a condition
     setPasswordShown(passwordShown ? false : true);
   };
 

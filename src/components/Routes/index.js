@@ -14,12 +14,14 @@ const Routes = () => {
 
   return (
     <Switch>
+      {/* REVIEW: Better naming: /users/signup  */}
       <Route exact path="/usersignup">
         <UserSignup />
       </Route>
       <Route exact path="/usersignin">
         <UserSignin />
       </Route>
+      {/* REVIEW: Better naming: /airlines/signup  */}
       <Route path="/airlinesignup">
         <AirlineSignup />
       </Route>
