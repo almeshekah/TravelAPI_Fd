@@ -24,7 +24,6 @@ export const fetchFlight = () => {
 export const searchFlight = (filter) => {
   return async (dispatch) => {
     try {
-      console.log({ ...filter });
       const res = await instance.post("/flights/search", filter);
       dispatch({
         type: SEARCH_FLIGHT,

@@ -1,5 +1,7 @@
 import { addDays, addHours } from "date-fns";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+//styling
 import { Search, People, FlightLand, FlightTakeoff } from "@material-ui/icons/";
 import {
   Button,
@@ -10,7 +12,7 @@ import {
   Checkbox,
 } from "@material-ui/core";
 import { StyledFormControl } from "./styles";
-import { useDispatch, useSelector } from "react-redux";
+//Components
 import Loading from "../Loading";
 import { searchFlight } from "../../store/actions/flightActions";
 import DatePicker from "./DatePicker";
@@ -36,19 +38,19 @@ const FlightSearch = () => {
     },
   ]);
 
-  const [roundtrip, setRoundtrip] = useState(false);
   const [options, setOptions] = useState({
     arrivalAirport: null,
     departureAirport: null,
   });
   const [filter, setFilter] = useState({
     passangers: 2,
+    rountrip: false,
   });
   if (destinationLoading) return <Loading />;
 
   const departureOptions = destinations.map((destination) => ({
-    value: destination.airport,
-    label: `${destination.location} (${destination.airport})`,
+    value: destination.id,
+    label: `${destination.city} (${destination.code} - ${destination.airport})`,
     name: "departureAirport",
   }));
   const arrivalOptions = departureOptions.map((option) => ({
@@ -77,7 +79,9 @@ const FlightSearch = () => {
   return (
     <StyledFormControl>
       <DatePicker date={date} setDate={setDate} />
-      {roundtrip && <DatePicker date={returnDate} setDate={setReturnDate} />}
+      {filter.rountrip && (
+        <DatePicker date={returnDate} setDate={setReturnDate} />
+      )}
       <h3>
         Number of Passangers <People />
       </h3>
@@ -107,17 +111,13 @@ const FlightSearch = () => {
         _options={arrivalOptions}
         set="arrivalAirport"
       />
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={roundtrip}
-            onChange={() => setRoundtrip(!roundtrip)}
-            name="roundtrip"
-            color="primary"
-          />
-        }
-        label="Roundtrip"
-      />
+      <Button
+        color="primary"
+        onClick={() => setFilter({ ...filter, rountrip: !roundtrip })}
+      >
+        <Text>{filter.roundtrip ? "Roundtrip" : "One-way"}</Text>
+      </Button>
+
       <Button
         variant="contained"
         color="primary"

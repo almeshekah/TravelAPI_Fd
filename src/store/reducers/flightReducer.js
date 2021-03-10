@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   flights: [],
-  // loading: true,
+  loading: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -22,6 +22,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         flights: action.payload,
+        loading: false,
       };
     default:
       return state;
