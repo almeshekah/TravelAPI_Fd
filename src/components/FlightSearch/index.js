@@ -1,15 +1,20 @@
-import { addDays } from "date-fns";
+import { addDays, addHours } from "date-fns";
 import { useState } from "react";
 import { Search, People, FlightLand, FlightTakeoff } from "@material-ui/icons/";
-import { DateRangePicker } from "react-date-range";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
-import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
+import {
+  Button,
+  FormControl,
+  Input,
+  InputLabel,
+  FormControlLabel,
+  Checkbox,
+} from "@material-ui/core";
 import { StyledFormControl } from "./styles";
-import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading";
 import { searchFlight } from "../../store/actions/flightActions";
+import DatePicker from "./DatePicker";
+import AirportSelect from "./AirportSelect";
 
 const FlightSearch = () => {
   const { destinations, destinationLoading } = useSelector(
@@ -23,15 +28,21 @@ const FlightSearch = () => {
       key: "selection",
     },
   ]);
-  const [passangers, setPassangers] = useState(2);
+  const [returnDate, setReturnDate] = useState([
+    {
+      startDate: addDays(new Date(), 7),
+      endDate: addDays(new Date(), 8),
+      key: "selection",
+    },
+  ]);
+
+  const [roundtrip, setRoundtrip] = useState(false);
   const [options, setOptions] = useState({
     arrivalAirport: null,
     departureAirport: null,
   });
   const [filter, setFilter] = useState({
     passangers: 2,
-    arrivalAirport: "",
-    departureAirport: "",
   });
   if (destinationLoading) return <Loading />;
 
@@ -46,39 +57,28 @@ const FlightSearch = () => {
   }));
 
   const handleOptions = (selectedOption) => {
-    console.log(selectedOption);
     setOptions({ ...options, [selectedOption.name]: selectedOption });
-    setFilter({ ...filter, [selectedOption.name]: selectedOption.value });
   };
   const handleChange = (event) => {
     setFilter({ ...filter, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = () => {
-    console.log({
-      ...filter,
-      departureDate: date[0].startDate.toJSON().slice(0, 10),
-      arrivalDate: date[0].endDate.toJSON().slice(0, 10),
-    });
     dispatch(
       searchFlight({
         ...filter,
-        departureDate: date[0].startDate.toJSON().slice(0, 10),
-        arrivalDate: date[0].endDate.toJSON().slice(0, 10),
+        departureDate: addDays(date[0].startDate, 1).toJSON().slice(0, 10),
+        arrivalDate: addDays(date[0].endDate, 1).toJSON().slice(0, 10),
+        departureAirport: options.departureAirport.value,
+        arrivalAirport: options.arrivalAirport.value,
       })
     );
   };
   return (
     <StyledFormControl>
-      <DateRangePicker
-        onChange={(item) => setDate([item.selection])}
-        showSelectionPreview={true}
-        moveRangeOnFirstSelection={false}
-        months={1}
-        ranges={date}
-        direction="horizontal"
-      />
-      <h3 htmlFor="my-input">
+      <DatePicker date={date} setDate={setDate} />
+      {roundtrip && <DatePicker date={returnDate} setDate={setReturnDate} />}
+      <h3>
         Number of Passangers <People />
       </h3>
       <Input
@@ -86,24 +86,37 @@ const FlightSearch = () => {
         min={1}
         type="number"
         name="passangers"
-        value={passangers}
-        onChange={(event) => setPassangers(event.target.value)}
+        value={filter.passangers}
+        onChange={handleChange}
       />
-      <h3 htmlFor="my-input">
+      <h3>
         Departure Airport <FlightTakeoff />
       </h3>
-      <Select
-        value={options.departureAirport}
-        onChange={handleOptions}
-        options={departureOptions}
+      <AirportSelect
+        options={options}
+        handleOptions={handleOptions}
+        _options={departureOptions}
+        set="departureAirport"
       />
-      <h3 htmlFor="my-input">
+      <h3>
         Arrival Airport <FlightLand />
       </h3>
-      <Select
-        value={options.arrivalAirport}
-        onChange={handleOptions}
-        options={arrivalOptions}
+      <AirportSelect
+        options={options}
+        handleOptions={handleOptions}
+        _options={arrivalOptions}
+        set="arrivalAirport"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={roundtrip}
+            onChange={() => setRoundtrip(!roundtrip)}
+            name="roundtrip"
+            color="primary"
+          />
+        }
+        label="Roundtrip"
       />
       <Button
         variant="contained"
