@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   flights: [],
-  // loading: true,
+  flightsLoading: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         flights: action.payload.flights,
-        // loading: false,
+        // flightsLoading: false,
       };
     case CREATE_FLIGHT:
       const { newFlight } = action.payload;
@@ -30,6 +30,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         flights: action.payload,
+        flightsLoading: false,
       };
     default:
       return state;

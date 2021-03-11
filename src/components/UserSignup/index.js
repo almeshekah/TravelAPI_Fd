@@ -1,23 +1,23 @@
+
 import React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { register } from '../../serviceWorker';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { signup, updateProfile } from '../../store/actions/userAuthActions';
+//Styling
 import {
-	FormStyled,
-	LabelStyled,
-	InputFieldStyled,
-	FieldSetStyled,
-	LegendStyled,
-	FormAddButtonStyled,
-} from './styles';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+  FormStyled,
+  LabelStyled,
+  InputFieldStyled,
+  FieldSetStyled,
+  LegendStyled,
+  FormAddButtonStyled,
+} from "./styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const UserSignup = () => {
 	const eye = <FontAwesomeIcon icon={faEye} />;

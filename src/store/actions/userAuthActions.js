@@ -1,15 +1,16 @@
+
 import instance from './instance';
 import decode from 'jwt-decode';
 import { SET_USER, FETCH_PROFILE, UPDATE_PROFILE } from './types';
 
+
 const setUser = (token) => {
-	localStorage.setItem('myToken', token);
-	//the req with instance will be will a token
-	instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-	return {
-		type: SET_USER,
-		payload: decode(token),
-	};
+  localStorage.setItem("myToken", token);
+  instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  return {
+    type: SET_USER,
+    payload: decode(token),
+  };
 };
 
 export const signup = (newUser, history) => {
@@ -20,13 +21,12 @@ export const signup = (newUser, history) => {
 			const res = await instance.post('/user/Signup', formData);
 			localStorage.setItem('myToken', res.data.token);
 			dispatch(setUser(res.data.token));
-
-			history.replace('/');
-			console.log('Your user has been created successfully');
-		} catch (error) {
-			console.log(error);
-		}
-	};
+      history.replace("/");
+      console.log("Your user has been created successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const signin = (user, history) => {
@@ -54,17 +54,17 @@ export const singout = (history) => {
 };
 
 export const checkForTokenUser = () => (dispatch) => {
-	const token = localStorage.getItem('myToken');
-	if (token) {
-		const user = decode(token);
-		const currentTime = Date.now();
-		if (user.exp >= currentTime) {
-			dispatch(setUser(token));
-		} else {
-			localStorage.removeItem('myToken');
-			dispatch(singout());
-		}
-	}
+  const token = localStorage.getItem("myToken");
+  if (token) {
+    const user = decode(token);
+    const currentTime = Date.now();
+    if (user.exp >= currentTime) {
+      dispatch(setUser(token));
+    } else {
+      localStorage.removeItem("myToken");
+      dispatch(singout());
+    }
+  }
 };
 
 export const profile = (userId) => async (dispatch) => {

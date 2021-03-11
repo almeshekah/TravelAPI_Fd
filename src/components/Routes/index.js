@@ -1,12 +1,14 @@
-import React from 'react';
-import { Route, Switch } from 'react-router';
-import { useSelector } from 'react-redux';
-import Home from '../Home';
-import UserSignin from '../UserSignin';
-import UserSignup from '../UserSignup';
-import AirlineSignup from '../AirlineSignup';
-import AirlineSignin from '../AirlineSignin';
-import FlightList from '../FlightList';
+import React from "react";
+import { Route, Switch } from "react-router";
+import { useSelector } from "react-redux";
+//Components
+import Home from "../Home";
+import UserSignin from "../UserSignin";
+import UserSignup from "../UserSignup";
+import AirlineSignup from "../AirlineSignup";
+import AirlineSignin from "../AirlineSignin";
+import FlightList from "../FlightList";
+import Flights from "../Flights";
 import Userprofile from '../Userprofile';
 
 const Routes = () => {
@@ -30,8 +32,9 @@ const Routes = () => {
       <Route path="/airlinesignin">
         <AirlineSignin />
       </Route>
-      {/* <Link to={`/airlines/${airline.id}/flights/update`}> */}
-
+      <Route path="/flightsearch">
+        <Flights />
+      </Route>
       <Route
         path={[
           "/airlines/:airlineId/flights/new",
@@ -40,19 +43,15 @@ const Routes = () => {
       >
         <FlightAdd />
       </Route>
-
       <Route path="/airlines/:airlineSlug">
         <AirlineDetail flights={flights} />
       </Route>
-
       <Route path="/flights">
         <FlightList flights={flights} />
       </Route>
-
       <Route path="/airlines">
         <AirlineList airlines={airlines} />
       </Route>
-
 			<Route path="/">
 				<Home />
 			</Route>
