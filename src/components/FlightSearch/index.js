@@ -30,11 +30,6 @@ const FlightSearch = () => {
       endDate: addDays(new Date(), 1),
       key: "selection",
     },
-    returnDates: {
-      startDate: addDays(new Date(), 7),
-      endDate: addDays(new Date(), 8),
-      key: "selection",
-    },
   });
   if (destinationLoading) return <Loading />;
 
@@ -64,10 +59,6 @@ const FlightSearch = () => {
           arrivalDate: format(filter.dates.endDate, "yyyy-MM-dd"),
           departureAirport: options.departureAirport.value,
           arrivalAirport: options.arrivalAirport.value,
-          return: {
-            departureDate: format(filter.returnDates.startDate, "yyyy-MM-dd"),
-            arrivalDate: format(filter.returnDates.endDate, "yyyy-MM-dd"),
-          },
         },
         history
       )
@@ -77,12 +68,6 @@ const FlightSearch = () => {
     <StyledFormControl>
       <h3>Flight Dates</h3>
       <DatePicker filter={filter} setFilter={setFilter} set="dates" />
-      {filter.roundtrip && (
-        <>
-          <h3>Return Flight Dates</h3>
-          <DatePicker filter={filter} setFilter={setFilter} set="returnDates" />
-        </>
-      )}
       <h3>
         Number of Passangers <People />
       </h3>
