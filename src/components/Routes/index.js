@@ -30,8 +30,14 @@ const Routes = () => {
       <Route path="/airlinesignin">
         <AirlineSignin />
       </Route>
+      {/* <Link to={`/airlines/${airline.id}/flights/update`}> */}
 
-      <Route path="/airlines/:airlineId/flights/new">
+      <Route
+        path={[
+          "/airlines/:airlineId/flights/new",
+          "/airlines/:airlineId/flights/update",
+        ]}
+      >
         <FlightAdd />
       </Route>
 
