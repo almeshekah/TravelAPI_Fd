@@ -1,16 +1,13 @@
-import React from "react";
-import { Route, Switch } from "react-router";
-import { useSelector } from "react-redux";
-
-import Home from "../Home";
-import UserSignin from "../UserSignin";
-import UserSignup from "../UserSignup";
-import AirlineSignup from "../AirlineSignup";
-import AirlineSignin from "../AirlineSignin";
-import FlightList from "../FlightList";
-import AirlineList from "../AirlineList";
-import FlightAdd from "../FlightAdd";
-import AirlineDetail from "../AirlineDetail";
+import React from 'react';
+import { Route, Switch } from 'react-router';
+import { useSelector } from 'react-redux';
+import Home from '../Home';
+import UserSignin from '../UserSignin';
+import UserSignup from '../UserSignup';
+import AirlineSignup from '../AirlineSignup';
+import AirlineSignin from '../AirlineSignin';
+import FlightList from '../FlightList';
+import Userprofile from '../Userprofile';
 
 const Routes = () => {
   const flights = useSelector((state) => state.flightReducer.flights);
@@ -18,6 +15,9 @@ const Routes = () => {
 
   return (
     <Switch>
+    	<Route exact path="/user/profile">
+				<Userprofile />
+			</Route>
       <Route exact path="/usersignup">
         <UserSignup />
       </Route>
@@ -53,11 +53,12 @@ const Routes = () => {
         <AirlineList airlines={airlines} />
       </Route>
 
-      <Route path="/">
-        <Home />
-      </Route>
-    </Switch>
-  );
+			<Route path="/">
+				<Home />
+			</Route>
+		</Switch>
+	);
+
 };
 
 export default Routes;
