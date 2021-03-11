@@ -1,22 +1,23 @@
-import React from "react";
-import { Route, Switch } from "react-router";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { Route, Switch } from 'react-router';
+import { useSelector } from 'react-redux';
 //Components
-import Home from "../Home";
-import UserSignin from "../UserSignin";
-import UserSignup from "../UserSignup";
-import AirlineSignup from "../AirlineSignup";
-import AirlineSignin from "../AirlineSignin";
-import FlightList from "../FlightList";
-import AirlineList from "../AirlineList";
-import FlightAdd from "../FlightAdd";
-import AirlineDetail from "../AirlineDetail";
-import Userprofile from "../Userprofile";
-import Flights from "../Flights";
+
+import Home from '../Home';
+import UserSignin from '../UserSignin';
+import UserSignup from '../UserSignup';
+import AirlineSignup from '../AirlineSignup';
+import AirlineSignin from '../AirlineSignin';
+import FlightList from '../FlightList';
+import AirlineList from '../AirlineList';
+import FlightAdd from '../FlightAdd';
+import AirlineDetail from '../AirlineDetail';
+import Userprofile from '../Userprofile';
+import Flights from '../Flights';
 
 const Routes = () => {
-  const flights = useSelector((state) => state.flightReducer.flights);
-  const airlines = useSelector((state) => state.airlineReducer.airlines);
+	const flights = useSelector((state) => state.flightReducer.flights);
+	const airlines = useSelector((state) => state.airlineReducer.airlines);
 
   return (
     <Switch>
@@ -63,6 +64,7 @@ const Routes = () => {
       </Route>
     </Switch>
   );
+
 };
 
 export default Routes;
