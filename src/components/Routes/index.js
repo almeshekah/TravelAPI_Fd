@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux';
-
 import Home from '../Home';
 import UserSignin from '../UserSignin';
 import UserSignup from '../UserSignup';
@@ -38,6 +37,7 @@ const Routes = () => {
 			</Route>
 		</Switch>
 	);
+
 };
 
 export default Routes;

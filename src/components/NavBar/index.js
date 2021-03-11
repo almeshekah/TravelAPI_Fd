@@ -10,7 +10,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { singout, profile } from '../../store/actions/userAuthActions';
 const NaveBar = () => {
+
 	const history = useHistory();
+
 	const user = useSelector((state) => state.userAuthReducer.user);
 	const dispatch = useDispatch();
 	return (
@@ -24,6 +26,9 @@ const NaveBar = () => {
 					<NavBarliStyled>
 						<NavbarLink to="/flights">Flights</NavbarLink>
 					</NavBarliStyled>
+              <NavBarliStyled>
+            <NavbarLink to="/airlines">Airlines</NavbarLink>
+          </NavBarliStyled>
 					{user ? (
 						<>
 							<UsernameStyled>welcome , {user.username}! </UsernameStyled>
