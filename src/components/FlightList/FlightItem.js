@@ -1,24 +1,41 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { ItemWrapper } from "./styles";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+//Styling
+import UpdateButton from "../Button/UpdateButton";
 const FlightItem = ({ flight }) => {
+  // export const rows = [flight.name, flight.departureDate];
+
   return (
     <>
       <ItemWrapper>
         <Helmet>
           <title>Flights</title>
         </Helmet>
-        <p>{flight.name}</p>
-        <p>{flight.departureDate}</p>
-        <p>{flight.arrivalDate}</p>
-        <p>{flight.departureTime}</p>
-        <p>{flight.arrivalTime}</p>
-        <p>{flight.departureAirport}</p>
-        <p>{flight.arrivalAirport}</p>
-        <p>{flight.economyPrice}</p>
-        <p>{flight.businessPrice}</p>
-        <p>{flight.airlineId}</p>
+        <Table>
+          <TableBody>
+            <TableCell style={{ width: 100 }}>{flight.name}</TableCell>
+            <TableCell>{flight.departureDate}</TableCell>
+            <TableCell>{flight.departureTime}</TableCell>
+            <TableCell>{flight.arrivalTime}</TableCell>
+            <TableCell>{flight.departureAirport}</TableCell>
+            <TableCell>{flight.arrivalAirport}</TableCell>
+            <TableCell>{flight.economyPrice}</TableCell>
+            <TableCell>{flight.businessPrice}</TableCell>
+            <TableCell>{flight.airlineId}</TableCell>
+            <TableCell>
+              <UpdateButton></UpdateButton>
+            </TableCell>
+          </TableBody>
+        </Table>
       </ItemWrapper>
     </>
   );

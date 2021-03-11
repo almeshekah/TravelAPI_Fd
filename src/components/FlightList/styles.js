@@ -43,7 +43,7 @@ export const AddButtonStyled = styled.button`
   cursor: pointer;
   text-decoration: none;
   color: #fff;
-  background-color: #004ba0;
+  background-color: #326eb3;
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   // float: right;

@@ -10,28 +10,49 @@ import FlightList from '../FlightList';
 import Userprofile from '../Userprofile';
 
 const Routes = () => {
-	const flights = useSelector((state) => state.flightReducer.flights);
+  const flights = useSelector((state) => state.flightReducer.flights);
+  const airlines = useSelector((state) => state.airlineReducer.airlines);
 
-	return (
-		<Switch>
-			<Route exact path="/user/profile">
+  return (
+    <Switch>
+    	<Route exact path="/user/profile">
 				<Userprofile />
 			</Route>
-			<Route exact path="/user/signup">
-				<UserSignup />
-			</Route>
-			<Route exact path="/user/signin">
-				<UserSignin />
-			</Route>
-			<Route path="/airlinesignup">
-				<AirlineSignup />
-			</Route>
-			<Route path="/airlinesignin">
-				<AirlineSignin />
-			</Route>
-			<Route path="/flights">
-				<FlightList flights={flights} />
-			</Route>
+      <Route exact path="/usersignup">
+        <UserSignup />
+      </Route>
+      <Route exact path="/usersignin">
+        <UserSignin />
+      </Route>
+      <Route path="/airlinesignup">
+        <AirlineSignup />
+      </Route>
+      <Route path="/airlinesignin">
+        <AirlineSignin />
+      </Route>
+      {/* <Link to={`/airlines/${airline.id}/flights/update`}> */}
+
+      <Route
+        path={[
+          "/airlines/:airlineId/flights/new",
+          "/airlines/:airlineId/flights/update",
+        ]}
+      >
+        <FlightAdd />
+      </Route>
+
+      <Route path="/airlines/:airlineSlug">
+        <AirlineDetail flights={flights} />
+      </Route>
+
+      <Route path="/flights">
+        <FlightList flights={flights} />
+      </Route>
+
+      <Route path="/airlines">
+        <AirlineList airlines={airlines} />
+      </Route>
+
 			<Route path="/">
 				<Home />
 			</Route>
