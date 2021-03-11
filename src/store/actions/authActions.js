@@ -37,7 +37,7 @@ export const signin = (user, history) => {
       dispatch(setUser(res.data.token));
       // Alexc3
       history.replace("/");
-      console.log("Your user has been sing in successfully");
+      console.log("You have signed in successfully");
     } catch (error) {
       console.log(error);
     }
