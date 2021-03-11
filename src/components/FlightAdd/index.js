@@ -37,7 +37,6 @@ const FlightAdd = () => {
 
           name: "",
           departureDate: "",
-          arrivalDate: "",
           departureTime: "",
           arrivalTime: "",
           departureAirport: "",
@@ -90,16 +89,6 @@ const FlightAdd = () => {
                   type="text"
                   name="departureDate"
                   value={flight.departureDate}
-                  onChange={handleChange}
-                />
-              </LabelStyled>
-
-              <LabelStyled>
-                Arrival Date:
-                <InputFieldStyled
-                  type="text"
-                  name="arrivalDate"
-                  value={flight.arrivalDate}
                   onChange={handleChange}
                 />
               </LabelStyled>

@@ -25,11 +25,7 @@ const FlightSearch = () => {
   const [filter, setFilter] = useState({
     passangers: 2,
     roundtrip: false,
-    dates: {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 1),
-      key: "selection",
-    },
+    date: new Date(),
   });
   if (destinationLoading) return <Loading />;
 
@@ -56,7 +52,6 @@ const FlightSearch = () => {
         {
           ...filter,
           departureDate: format(filter.dates.startDate, "yyyy-MM-dd"),
-          arrivalDate: format(filter.dates.endDate, "yyyy-MM-dd"),
           departureAirport: options.departureAirport.value,
           arrivalAirport: options.arrivalAirport.value,
         },

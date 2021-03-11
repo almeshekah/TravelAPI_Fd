@@ -28,8 +28,7 @@ const FlightItem = ({ flight }) => {
             {stringTime(flight.arrivalTime)}
           </Typography>
           <Typography variant="h6">
-            <DateRange /> {stringDate(flight.departureDate)} -{" "}
-            {stringDate(flight.arrivalDate)}
+            <DateRange /> {stringDate(flight.departureDate)}
           </Typography>
           <Typography variant="h7">
             <Flight />
