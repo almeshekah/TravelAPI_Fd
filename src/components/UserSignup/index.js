@@ -1,26 +1,27 @@
+
 import React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { register } from '../../serviceWorker';
-
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { signup } from '../../store/actions/userAuthActions';
+import { signup, updateProfile } from '../../store/actions/userAuthActions';
+//Styling
 import {
-	FormStyled,
-	LabelStyled,
-	InputFieldStyled,
-	FieldSetStyled,
-	LegendStyled,
-	FormAddButtonStyled,
-} from './styles';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+  FormStyled,
+  LabelStyled,
+  InputFieldStyled,
+  FieldSetStyled,
+  LegendStyled,
+  FormAddButtonStyled,
+} from "./styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const UserSignup = () => {
 	const eye = <FontAwesomeIcon icon={faEye} />;
+	const profile = useSelector((state) => state.userAuthReducer.profile);
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const { errors } = useForm();
 	const history = useHistory();
@@ -32,15 +33,17 @@ const UserSignup = () => {
 
 	const dispatch = useDispatch();
 
-	const [user, setUser] = useState({
-		username: '',
-		password: '',
-		email: '',
-		firstName: '',
-		lastName: '',
-		passport: '',
-		picture: '',
-	});
+	const [user, setUser] = useState(
+		profile ?? {
+			username: '',
+			password: '',
+			email: '',
+			firstName: '',
+			lastName: '',
+			passport: '',
+			picture: '',
+		}
+	);
 
 	const handleChange = (event) => {
 		setUser({ ...user, [event.target.name]: event.target.value });
@@ -65,22 +68,22 @@ const UserSignup = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		setIsSubmitted(true);
-		console.log(user);
-		dispatch(signup(user, history));
+		if (profile) {
+			dispatch(updateProfile(user));
+			history.replace('/');
+		} else dispatch(signup(user, history));
 		restForm();
 	};
 	return (
 		<>
 			<Helmet>
-				<title> Sign Up</title>
+				<title>{profile ? 'Update' : 'Sign Up'} </title>
 			</Helmet>
 			{/* {!isSubmitted ? ( */}
 			<FormStyled>
 				<form onSubmit={handleSubmit}>
 					<FieldSetStyled>
 						<LegendStyled>
-							<h2> Sign Up</h2>
-
 							<LabelStyled>
 								first Name :
 								<InputFieldStyled
@@ -119,21 +122,23 @@ const UserSignup = () => {
 									onChange={handleChange}
 								/>
 							</LabelStyled>
+							{profile ? null : (
+								<LabelStyled>
+									Password:
+									<span>
+										<i onClick={togglePasswordVisiblity}>{eye}</i>
+									</span>
+									<InputFieldStyled
+										type={passwordShown ? 'text' : 'password'}
+										name="password"
+										value={user.password}
+										onChange={handleChange}
+										ref={register({ required: true, minLength: 8 })}
+									/>
+									{errors.password && <p>Pass is required!!</p>}
+								</LabelStyled>
+							)}
 
-							<LabelStyled>
-								Password:
-								<span>
-									<i onClick={togglePasswordVisiblity}>{eye}</i>
-								</span>
-								<InputFieldStyled
-									type={passwordShown ? 'text' : 'password'}
-									name="password"
-									value={user.password}
-									onChange={handleChange}
-									ref={register({ required: true, minLength: 8 })}
-								/>
-								{errors.password && <p>Pass is required!!</p>}
-							</LabelStyled>
 							<LabelStyled>
 								Picture:
 								<InputFieldStyled
@@ -152,7 +157,7 @@ const UserSignup = () => {
 							</LabelStyled>
 
 							<FormAddButtonStyled onSubmit={handleSubmit}>
-								Sign Up
+								{profile ? 'Update' : 'Sign Up'}
 							</FormAddButtonStyled>
 						</LegendStyled>
 					</FieldSetStyled>

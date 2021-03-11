@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router";
 import { useSelector } from "react-redux";
-
+//Components
 import Home from "../Home";
 import UserSignin from "../UserSignin";
 import UserSignup from "../UserSignup";
@@ -12,6 +12,8 @@ import AirlineList from "../AirlineList";
 import FlightAdd from "../FlightAdd";
 import AirlineDetail from "../AirlineDetail";
 import Userprofile from "../Userprofile";
+import Flights from "../Flights";
+import Userprofile from '../Userprofile';
 
 const Routes = () => {
   const flights = useSelector((state) => state.flightReducer.flights);
@@ -19,9 +21,10 @@ const Routes = () => {
 
   return (
     <Switch>
-      <Route exact path="/user/profile">
-        <Userprofile />
-      </Route>
+
+    	<Route exact path="/user/profile">
+				<Userprofile />
+			</Route>
       <Route exact path="/usersignup">
         <UserSignup />
       </Route>
@@ -39,28 +42,28 @@ const Routes = () => {
         path={[
           "/airlines/:airlineId/flights/new",
           "/airlines/:airlineId/flights/:flightId/update",
-        ]}
-      >
-        <FlightAdd />
+         <FlightAdd />
+      </Route>
+    
+      <Route path="/flightsearch">
+        <Flights />
       </Route>
 
       <Route path="/airlines/:airlineSlug">
         <AirlineDetail flights={flights} />
       </Route>
-
       <Route path="/flights">
         <FlightList flights={flights} />
       </Route>
-
       <Route path="/airlines">
         <AirlineList airlines={airlines} />
       </Route>
+			<Route path="/">
+				<Home />
+			</Route>
+		</Switch>
+	);
 
-      <Route path="/">
-        <Home />
-      </Route>
-    </Switch>
-  );
 };
 
 export default Routes;

@@ -36,7 +36,7 @@ export const airlinesignin = (user, history) => {
       localStorage.setItem("myToken", res.data.token);
       dispatch(setUser(res.data.token));
       history.replace("/");
-      console.log("Your user has been sing in successfully");
+      console.log("You have signed in successfully");
     } catch (error) {
       console.log(error);
     }

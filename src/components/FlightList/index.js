@@ -1,17 +1,15 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-import FlightItem from "./FlightItem";
-import { Title } from "./styles";
 import Table from "@material-ui/core/Table";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import FlightItem from "./FlightItem";
+import { Title } from "./styles";
+
 
 const FlightList = ({ flights }) => {
-  // const flights = useSelector((state) => state.flightReducer.flights);
-
   const flightList = flights.map((flight) => (
     <FlightItem flight={flight} key={flight.id} />
   ));

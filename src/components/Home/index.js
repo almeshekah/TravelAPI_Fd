@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { Description, HomeImage, Title, StyledFlightSearch } from "./styles";
+// Components
 import FlightSearch from "../FlightSearch";
+// Styling
 import { FlightTakeoff } from "@material-ui/icons";
+import { Button } from "@material-ui/core";
+import { Description, HomeImage, Title, StyledFlightSearch } from "./styles";
 
 const Home = () => {
   const [showSearch, setShowSearch] = useState(false);
@@ -11,7 +14,9 @@ const Home = () => {
       <Description>Live with no excuses and travel with no regrets</Description>
       <Description>
         Find your next adventure
-        <FlightTakeoff onClick={() => setShowSearch(!showSearch)} />
+        <Button onClick={() => setShowSearch(!showSearch)}>
+          <FlightTakeoff />
+        </Button>
       </Description>
       {showSearch && <StyledFlightSearch />}
       <HomeImage

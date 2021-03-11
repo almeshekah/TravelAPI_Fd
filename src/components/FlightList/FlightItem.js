@@ -11,6 +11,7 @@ import TableRow from "@material-ui/core/TableRow";
 //Styling
 import UpdateButton from "../Button/UpdateButton";
 const FlightItem = ({ flight }) => {
+
   return (
     <>
       <ItemWrapper>
@@ -33,6 +34,7 @@ const FlightItem = ({ flight }) => {
                 airlineId={flight.airlineId}
                 flightId={flight.id}
               ></UpdateButton>
+
             </TableCell>
           </TableBody>
         </Table>
