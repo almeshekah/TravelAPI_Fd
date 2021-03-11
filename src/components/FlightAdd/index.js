@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { register } from "../../serviceWorker";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { createFlight } from "../../store/actions/flightActions";
+import { createFlight, updateFlight } from "../../store/actions/flightActions";
 import {
   FormStyled,
   LabelStyled,
@@ -17,24 +17,37 @@ import {
 } from "./styles";
 
 const FlightAdd = () => {
-  const { errors } = useForm();
   const history = useHistory();
 
   const dispatch = useDispatch();
 
+  const { airlineId, flightId } = useParams();
+
+  const foundFlight = useSelector((state) =>
+    state.flightReducer.flights.find((flight) => flight.id === +flightId)
+  );
+
   const airline = useSelector((state) => state.authReducer.user);
 
-  const [flight, setFlight] = useState({
-    name: "",
-    departureDate: "",
-    arrivalDate: "",
-    departureTime: "",
-    arrivalTime: "",
-    departureAirport: "",
-    arrivalAirport: "",
-    economyPrice: "",
-    businessPrice: "",
-  });
+  const [flight, setFlight] = useState(
+    foundFlight
+      ? foundFlight
+      : {
+          airlineId: airlineId,
+
+          name: "",
+          departureDate: "",
+          arrivalDate: "",
+          departureTime: "",
+          arrivalTime: "",
+          departureAirport: "",
+          arrivalAirport: "",
+          economyPrice: "",
+          businessPrice: "",
+        }
+  );
+
+  console.log(foundFlight);
 
   const handleChange = (event) => {
     setFlight({ ...flight, [event.target.name]: event.target.value });
@@ -42,9 +55,10 @@ const FlightAdd = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createFlight(flight, airline.id));
-    history.replace("/flights");
-
+    if (foundFlight) {
+      dispatch(updateFlight(flight, airline.id));
+    } else dispatch(createFlight(flight, airline.id));
+    history.replace("/airlines");
   };
   return (
     <>
@@ -55,7 +69,10 @@ const FlightAdd = () => {
         <form onSubmit={handleSubmit}>
           <FieldSetStyled>
             <LegendStyled>
-              <h2>Add Flight</h2>
+              <h2>
+                {foundFlight ? "Update " : "New "}
+                Flight
+              </h2>
 
               <LabelStyled>
                 Name:
@@ -130,12 +147,10 @@ const FlightAdd = () => {
                 Price:
                 <InputFieldStyled
                   type="text"
-                  // type="radio"
                   name="economyPrice"
                   value={flight.economyPrice}
                   onChange={handleChange}
                 />
-                {/* <label for="economy">Economy</label><br> */}
               </LabelStyled>
 
               <LabelStyled>
@@ -149,7 +164,8 @@ const FlightAdd = () => {
               </LabelStyled>
 
               <FormAddButtonStyled onSubmit={handleSubmit}>
-                Add Flight
+                {foundFlight ? "Update " : "New "}
+                Flight
               </FormAddButtonStyled>
             </LegendStyled>
           </FieldSetStyled>

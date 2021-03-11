@@ -31,8 +31,7 @@ export const createFlight = (newFlight, airlineId) => {
       dispatch({
         type: CREATE_FLIGHT,
         payload: { newFlight: res.data },
-
-              });
+      });
     } catch (error) {
       console.log(error);
     }
@@ -50,6 +49,24 @@ export const searchFlight = (filter) => {
       });
     } catch (error) {
       console.log(error);
+    }
+  };
+};
+
+export const updateFlight = (updatedFlight, airlineId) => {
+  return async (dispatch) => {
+    try {
+      const res = await instance.put(
+        `/airlines/${airlineId}/flights/${updatedFlight.id}`,
+        updatedFlight
+      );
+
+      dispatch({
+        type: UPDATE_FLIGHT,
+        payload: { updatedFlight: res.data },
+      });
+    } catch (error) {
+      console.log("Error:", error);
     }
   };
 };

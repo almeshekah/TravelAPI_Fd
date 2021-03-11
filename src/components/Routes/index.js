@@ -11,6 +11,7 @@ import FlightList from "../FlightList";
 import AirlineList from "../AirlineList";
 import FlightAdd from "../FlightAdd";
 import AirlineDetail from "../AirlineDetail";
+import Userprofile from "../Userprofile";
 
 const Routes = () => {
   const flights = useSelector((state) => state.flightReducer.flights);
@@ -18,6 +19,9 @@ const Routes = () => {
 
   return (
     <Switch>
+      <Route exact path="/user/profile">
+        <Userprofile />
+      </Route>
       <Route exact path="/usersignup">
         <UserSignup />
       </Route>
@@ -31,7 +35,12 @@ const Routes = () => {
         <AirlineSignin />
       </Route>
 
-      <Route path="/airlines/:airlineId/flights/new">
+      <Route
+        path={[
+          "/airlines/:airlineId/flights/new",
+          "/airlines/:airlineId/flights/:flightId/update",
+        ]}
+      >
         <FlightAdd />
       </Route>
 

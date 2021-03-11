@@ -25,11 +25,19 @@ const reducer = (state = initialState, action) => {
         flights: [...state.flights, newFlight],
       };
 
-
     case SEARCH_FLIGHT:
       return {
         ...state,
         flights: action.payload,
+      };
+
+    case UPDATE_FLIGHT:
+      const { updatedFlight } = action.payload;
+      return {
+        ...state,
+        flights: state.flights.map((flight) =>
+          flight.id === updatedFlight.id ? updatedFlight : flight
+        ),
       };
     default:
       return state;
