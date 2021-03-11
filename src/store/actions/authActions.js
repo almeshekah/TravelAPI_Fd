@@ -12,12 +12,12 @@ const setUser = (token) => {
   };
 };
 
-export const signup = (newAirline, history) => {
+export const airlinesignup = (newAirline, history) => {
   return async (dispatch) => {
     try {
       const formData = new FormData();
       for (const key in newAirline) formData.append(key, newAirline[key]);
-      const res = await instance.post("/airlinesignup", formData);
+      const res = await instance.post("/airlines/airlinesignup", formData);
       localStorage.setItem("myToken", res.data.token);
       dispatch(setUser(res.data.token));
 
@@ -29,13 +29,12 @@ export const signup = (newAirline, history) => {
   };
 };
 
-export const signin = (user, history) => {
+export const airlinesignin = (user, history) => {
   return async (dispatch) => {
     try {
-      const res = await instance.post("/airlinesignin", user);
+      const res = await instance.post("/airlines/airlinesignin", user);
       localStorage.setItem("myToken", res.data.token);
       dispatch(setUser(res.data.token));
-      // Alexc3
       history.replace("/");
       console.log("You have signed in successfully");
     } catch (error) {

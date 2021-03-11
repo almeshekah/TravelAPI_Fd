@@ -21,6 +21,25 @@ export const fetchFlight = () => {
   };
 };
 
+
+export const createFlight = (newFlight, airlineId) => {
+  return async (dispatch) => {
+    try {
+      const res = await instance.post(
+        `/airlines/${airlineId}/flights`,
+        newFlight
+      );
+      dispatch({
+        type: CREATE_FLIGHT,
+        payload: { newFlight: res.data },
+
+              });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const searchFlight = (filter, history) => {
   return async (dispatch) => {
     try {

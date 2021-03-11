@@ -1,12 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { signin } from "../../store/actions/authActions";
+import { airlinesignin } from "../../store/actions/authActions";
 import {
-  AddButtonStyled,
   FormStyled,
   LabelStyled,
   InputFieldStyled,
@@ -53,7 +52,7 @@ const AirlineSignin = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsSubmitted(true);
-    dispatch(signin(user, history));
+    dispatch(airlinesignin(user, history));
     restForm();
   };
   return (
