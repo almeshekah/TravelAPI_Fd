@@ -1,16 +1,9 @@
-import { addDays, addHours } from "date-fns";
+import { addDays, format } from "date-fns";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //styling
 import { Search, People, FlightLand, FlightTakeoff } from "@material-ui/icons/";
-import {
-  Button,
-  FormControl,
-  Input,
-  InputLabel,
-  FormControlLabel,
-  Checkbox,
-} from "@material-ui/core";
+import { Button, Input } from "@material-ui/core";
 import { StyledFormControl } from "./styles";
 //Components
 import Loading from "../Loading";
@@ -23,28 +16,23 @@ const FlightSearch = () => {
     (state) => state.destinationReducer
   );
   const dispatch = useDispatch();
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 1),
-      key: "selection",
-    },
-  ]);
-  const [returnDate, setReturnDate] = useState([
-    {
-      startDate: addDays(new Date(), 7),
-      endDate: addDays(new Date(), 8),
-      key: "selection",
-    },
-  ]);
-
   const [options, setOptions] = useState({
     arrivalAirport: null,
     departureAirport: null,
   });
   const [filter, setFilter] = useState({
     passangers: 2,
-    rountrip: false,
+    roundtrip: false,
+    dates: {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 1),
+      key: "selection",
+    },
+    returnDates: {
+      startDate: addDays(new Date(), 7),
+      endDate: addDays(new Date(), 8),
+      key: "selection",
+    },
   });
   if (destinationLoading) return <Loading />;
 
@@ -66,21 +54,37 @@ const FlightSearch = () => {
   };
 
   const handleSubmit = () => {
+    console.log({
+      ...filter,
+      departureDate: format(filter.dates.startDate, "yyyy-MM-dd"),
+      arrivalDate: format(filter.dates.endDate, "yyyy-MM-dd"),
+      departureAirport: options.departureAirport.value,
+      arrivalAirport: options.arrivalAirport.value,
+    });
+
     dispatch(
       searchFlight({
         ...filter,
-        departureDate: addDays(date[0].startDate, 1).toJSON().slice(0, 10),
-        arrivalDate: addDays(date[0].endDate, 1).toJSON().slice(0, 10),
+        departureDate: format(filter.dates.startDate, "yyyy-MM-dd"),
+        arrivalDate: format(filter.dates.endDate, "yyyy-MM-dd"),
         departureAirport: options.departureAirport.value,
         arrivalAirport: options.arrivalAirport.value,
+        return: {
+          departureDate: format(filter.returnDates.startDate, "yyyy-MM-dd"),
+          arrivalDate: format(filter.returnDates.endDate, "yyyy-MM-dd"),
+        },
       })
     );
   };
   return (
     <StyledFormControl>
-      <DatePicker date={date} setDate={setDate} />
-      {filter.rountrip && (
-        <DatePicker date={returnDate} setDate={setReturnDate} />
+      <h3>Flight Dates</h3>
+      <DatePicker filter={filter} setFilter={setFilter} set="dates" />
+      {filter.roundtrip && (
+        <>
+          <h3>Return Flight Dates</h3>
+          <DatePicker filter={filter} setFilter={setFilter} set="returnDates" />
+        </>
       )}
       <h3>
         Number of Passangers <People />
@@ -113,9 +117,9 @@ const FlightSearch = () => {
       />
       <Button
         color="primary"
-        onClick={() => setFilter({ ...filter, rountrip: !roundtrip })}
+        onClick={() => setFilter({ ...filter, roundtrip: !filter.roundtrip })}
       >
-        <Text>{filter.roundtrip ? "Roundtrip" : "One-way"}</Text>
+        {filter.roundtrip ? "Roundtrip" : "One-way"}
       </Button>
 
       <Button
