@@ -8,6 +8,10 @@ import UserSignup from "../UserSignup";
 import AirlineSignup from "../AirlineSignup";
 import AirlineSignin from "../AirlineSignin";
 import FlightList from "../FlightList";
+import AirlineList from "../AirlineList";
+import FlightAdd from "../FlightAdd";
+import AirlineDetail from "../AirlineDetail";
+import Userprofile from "../Userprofile";
 import Flights from "../Flights";
 import Userprofile from '../Userprofile';
 
@@ -17,6 +21,7 @@ const Routes = () => {
 
   return (
     <Switch>
+
     	<Route exact path="/user/profile">
 				<Userprofile />
 			</Route>
@@ -32,17 +37,18 @@ const Routes = () => {
       <Route path="/airlinesignin">
         <AirlineSignin />
       </Route>
-      <Route path="/flightsearch">
-        <Flights />
-      </Route>
+
       <Route
         path={[
           "/airlines/:airlineId/flights/new",
-          "/airlines/:airlineId/flights/update",
-        ]}
-      >
-        <FlightAdd />
+          "/airlines/:airlineId/flights/:flightId/update",
+         <FlightAdd />
       </Route>
+    
+      <Route path="/flightsearch">
+        <Flights />
+      </Route>
+
       <Route path="/airlines/:airlineSlug">
         <AirlineDetail flights={flights} />
       </Route>

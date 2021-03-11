@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet";
 import { ItemWrapper } from "./styles";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -12,7 +11,6 @@ import TableRow from "@material-ui/core/TableRow";
 //Styling
 import UpdateButton from "../Button/UpdateButton";
 const FlightItem = ({ flight }) => {
-  // export const rows = [flight.name, flight.departureDate];
 
   return (
     <>
@@ -32,7 +30,11 @@ const FlightItem = ({ flight }) => {
             <TableCell>{flight.businessPrice}</TableCell>
             <TableCell>{flight.airlineId}</TableCell>
             <TableCell>
-              <UpdateButton></UpdateButton>
+              <UpdateButton
+                airlineId={flight.airlineId}
+                flightId={flight.id}
+              ></UpdateButton>
+
             </TableCell>
           </TableBody>
         </Table>
