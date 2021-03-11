@@ -21,14 +21,15 @@ export const fetchFlight = () => {
   };
 };
 
-export const searchFlight = (filter) => {
+export const searchFlight = (filter, history) => {
   return async (dispatch) => {
     try {
       const res = await instance.post("/flights/search", filter);
-      dispatch({
+      await dispatch({
         type: SEARCH_FLIGHT,
         payload: res.data,
       });
+      history.push("/flightsearch");
     } catch (error) {
       console.log(error);
     }

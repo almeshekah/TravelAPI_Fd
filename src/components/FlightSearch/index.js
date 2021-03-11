@@ -10,12 +10,14 @@ import Loading from "../Loading";
 import { searchFlight } from "../../store/actions/flightActions";
 import DatePicker from "./DatePicker";
 import AirportSelect from "./AirportSelect";
+import { useHistory } from "react-router";
 
 const FlightSearch = () => {
   const { destinations, destinationLoading } = useSelector(
     (state) => state.destinationReducer
   );
   const dispatch = useDispatch();
+  const history = useHistory();
   const [options, setOptions] = useState({
     arrivalAirport: null,
     departureAirport: null,
@@ -54,26 +56,21 @@ const FlightSearch = () => {
   };
 
   const handleSubmit = () => {
-    console.log({
-      ...filter,
-      departureDate: format(filter.dates.startDate, "yyyy-MM-dd"),
-      arrivalDate: format(filter.dates.endDate, "yyyy-MM-dd"),
-      departureAirport: options.departureAirport.value,
-      arrivalAirport: options.arrivalAirport.value,
-    });
-
     dispatch(
-      searchFlight({
-        ...filter,
-        departureDate: format(filter.dates.startDate, "yyyy-MM-dd"),
-        arrivalDate: format(filter.dates.endDate, "yyyy-MM-dd"),
-        departureAirport: options.departureAirport.value,
-        arrivalAirport: options.arrivalAirport.value,
-        return: {
-          departureDate: format(filter.returnDates.startDate, "yyyy-MM-dd"),
-          arrivalDate: format(filter.returnDates.endDate, "yyyy-MM-dd"),
+      searchFlight(
+        {
+          ...filter,
+          departureDate: format(filter.dates.startDate, "yyyy-MM-dd"),
+          arrivalDate: format(filter.dates.endDate, "yyyy-MM-dd"),
+          departureAirport: options.departureAirport.value,
+          arrivalAirport: options.arrivalAirport.value,
+          return: {
+            departureDate: format(filter.returnDates.startDate, "yyyy-MM-dd"),
+            arrivalDate: format(filter.returnDates.endDate, "yyyy-MM-dd"),
+          },
         },
-      })
+        history
+      )
     );
   };
   return (

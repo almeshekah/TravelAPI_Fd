@@ -8,6 +8,7 @@ import UserSignup from "../UserSignup";
 import AirlineSignup from "../AirlineSignup";
 import AirlineSignin from "../AirlineSignin";
 import FlightList from "../FlightList";
+import Flights from "../Flights";
 
 const Routes = () => {
   const flights = useSelector((state) => state.flightReducer.flights);
@@ -26,9 +27,12 @@ const Routes = () => {
       <Route path="/airlinesignin">
         <AirlineSignin />
       </Route>
-      <Route path="/flights">
-        <FlightList flights={flights} />
+      <Route path="/flightsearch">
+        <Flights />
       </Route>
+      {/* <Route path="/flights">
+        <FlightList flights={flights} />
+      </Route> */}
       <Route path="/">
         <Home />
       </Route>
