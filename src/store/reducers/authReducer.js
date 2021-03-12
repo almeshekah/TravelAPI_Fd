@@ -1,7 +1,9 @@
-import { SET_USER } from "../actions/types";
+import { SET_USER, FETCH_PROFILE, UPDATE_PROFILE } from "../actions/types";
 
 const initialState = {
   user: null,
+  profile: null,
+  loading: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,7 +13,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
       };
-
+    case FETCH_PROFILE:
+      return {
+        ...state,
+        profile: action.payload,
+        loading: false,
+      };
+    case UPDATE_PROFILE:
+      const updatedProfile = action.payload;
+      return {
+        ...state,
+        profile: updatedProfile,
+      };
     default:
       return state;
   }

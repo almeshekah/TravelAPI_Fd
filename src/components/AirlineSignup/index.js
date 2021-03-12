@@ -27,17 +27,17 @@ const AirlineSignup = () => {
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
-    setPasswordShown(passwordShown ? false : true);
+    setPasswordShown(!passwordShown);
   };
 
   const dispatch = useDispatch();
 
   const [user, setUser] = useState({
-    nameOfAirline: "",
+    name: "",
     username: "",
     password: "",
     email: "",
-    picture: "",
+    logo: "",
   });
 
   const handleChange = (event) => {
@@ -45,16 +45,16 @@ const AirlineSignup = () => {
   };
 
   const handlePicture = (event) => {
-    setUser({ ...user, picture: event.target.files[0] });
+    setUser({ ...user, logo: event.target.files[0] });
   };
 
   const restForm = () => {
     setUser({
-      nameOfAirline: "",
+      name: "",
       username: "",
       password: "",
       email: "",
-      picture: "",
+      logo: "",
     });
   };
 
@@ -80,8 +80,8 @@ const AirlineSignup = () => {
                 Name of Airline:
                 <InputFieldStyled
                   type="text"
-                  name="nameOfAirline"
-                  value={user.nameOfAirline}
+                  name="name"
+                  value={user.name}
                   onChange={handleChange}
                 />
               </LabelStyled>
@@ -114,7 +114,7 @@ const AirlineSignup = () => {
                 Picture:
                 <InputFieldStyled
                   type="file"
-                  name="picture"
+                  name="logo"
                   onChange={handlePicture}
                 />
               </LabelStyled>

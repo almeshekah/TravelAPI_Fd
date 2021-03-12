@@ -26,7 +26,7 @@ const AirlineSignin = () => {
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
-    setPasswordShown(passwordShown ? false : true);
+    setPasswordShown(!passwordShown);
   };
 
   const dispatch = useDispatch();

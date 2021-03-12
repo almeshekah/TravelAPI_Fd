@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { signin } from "../../store/actions/userAuthActions";
+import { signin } from "../../store/actions/authActions";
 import {
   FormStyled,
   LabelStyled,
