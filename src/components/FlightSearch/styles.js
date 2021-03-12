@@ -37,11 +37,10 @@ export const StyledFormControl = styled(FormControl)`
 `;
 
 export const styledDate = styled.div`
-.date {
+  .date {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
     align-content: center;
   }
-}
 `;

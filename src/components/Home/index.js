@@ -22,7 +22,7 @@ const Home = () => {
       <HomeImage
         src="https://mydigitaloffice.com/wp-content/uploads/2020/11/travel.png"
         alt="Home page"
-      ></HomeImage>
+      />
     </div>
   );
 };
