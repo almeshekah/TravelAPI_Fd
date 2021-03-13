@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { AddButtonStyled } from "../FlightList/styles";
+import { AddButtonStyled } from "../../styles";
 
 const UpdateButton = ({ airlineId, flightId }) => {
   return (

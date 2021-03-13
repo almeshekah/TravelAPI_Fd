@@ -25,35 +25,6 @@ export const ListWrapper = styled.div`
   // height: 100px;
 `;
 
-export const AddButtonStyled = styled.button`
-  display: inline-block;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  color: #fff;
-  background-color: #326EB3;
-  font-size: 15px;
-  font-family: "Roboto", sans-serif;
-  // float: right;
-  // display: flex;
-  align-items: flex-start;
-  align-items: center;
-  justify-content: center;
-  block {
-    display: block;
-    width: 100%;
-  }
-  &:focus {
-    outline: none;
-  }
-  &:active {
-    transform: scale(0.98);
-  }
-`;
-
 export const GoButtonStyled = styled.button`
   display: inline-block;
   border: none;
@@ -63,7 +34,7 @@ export const GoButtonStyled = styled.button`
   cursor: pointer;
   text-decoration: none;
   color: #fff;
-  background-color: #326EB3;
+  background-color: #326eb3;
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   // float: right;

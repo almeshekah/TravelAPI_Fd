@@ -14,7 +14,7 @@ import {
   FieldSetStyled,
   LegendStyled,
   FormAddButtonStyled,
-} from "./styles";
+} from "../../styles";
 
 const FlightAdd = () => {
   const history = useHistory();

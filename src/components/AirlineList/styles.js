@@ -33,32 +33,3 @@ export const ItemWrapper = styled.div`
   }
   text-align: center;
 `;
-
-export const AddButtonStyled = styled.button`
-  display: inline-block;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  color: #fff;
-  background-color: #004ba0;
-  font-size: 15px;
-  font-family: "Roboto", sans-serif;
-  // float: right;
-  // display: flex;
-  align-items: flex-start;
-  align-items: center;
-  justify-content: center;
-  block {
-    display: block;
-    width: 100%;
-  }
-  &:focus {
-    outline: none;
-  }
-  &:active {
-    transform: scale(0.98);
-  }
-`;
