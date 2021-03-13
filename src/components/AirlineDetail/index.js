@@ -2,7 +2,8 @@ import React from "react";
 import { useParams, Redirect, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
-import { DetailWrapper, AddButtonStyled, GoButtonStyled } from "./styles";
+import { DetailWrapper, GoButtonStyled } from "./styles";
+import { AddButtonStyled } from "../../styles";
 import FlightList from "../FlightList";
 
 const AirlineDetail = () => {

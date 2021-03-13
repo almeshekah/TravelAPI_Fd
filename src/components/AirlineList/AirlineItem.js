@@ -14,9 +14,9 @@ const AirlineItem = ({ airline }) => {
         <Helmet>
           <title>Airline</title>
         </Helmet>
-        <p>{airline.nameOfAirline}</p>
+        <p>{airline.name}</p>
         <Link to={`airlines/${airline.slug}`}>
-          <img src={airline.picture} alt={airline.name} />
+          <img src={airline.logo} alt={airline.name} />
         </Link>
       </ItemWrapper>
     </>

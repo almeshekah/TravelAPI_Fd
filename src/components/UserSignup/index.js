@@ -14,14 +14,13 @@ import {
   FieldSetStyled,
   LegendStyled,
   FormAddButtonStyled,
-} from "./styles";
+} from "../../styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const UserSignup = () => {
   const eye = <FontAwesomeIcon icon={faEye} />;
   const profile = useSelector((state) => state.authReducer.profile);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const { errors } = useForm();
   const history = useHistory();
 
@@ -66,7 +65,6 @@ const UserSignup = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setIsSubmitted(true);
     if (profile) {
       dispatch(updateProfile(user));
       history.replace("/");
@@ -78,7 +76,6 @@ const UserSignup = () => {
       <Helmet>
         <title>{profile ? "Update" : "Sign Up"} </title>
       </Helmet>
-      {/* {!isSubmitted ? ( */}
       <FormStyled>
         <form onSubmit={handleSubmit}>
           <FieldSetStyled>

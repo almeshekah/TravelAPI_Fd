@@ -12,7 +12,7 @@ import {
   FieldSetStyled,
   LegendStyled,
   FormAddButtonStyled,
-} from "./styles";
+} from "../../styles";
 
 import { register } from "../../serviceWorker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,7 +20,6 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const AirlineSignin = () => {
   const eye = <FontAwesomeIcon icon={faEye} />;
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const { errors } = useForm();
   const history = useHistory();
 
@@ -51,7 +50,6 @@ const AirlineSignin = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setIsSubmitted(true);
     dispatch(airlinesignin(user, history));
     restForm();
   };
@@ -60,7 +58,6 @@ const AirlineSignin = () => {
       <Helmet>
         <title>Airline Sign In</title>
       </Helmet>
-      {/* {!isSubmitted ? ( */}
       <FormStyled>
         <form onSubmit={handleSubmit}>
           <FieldSetStyled>
