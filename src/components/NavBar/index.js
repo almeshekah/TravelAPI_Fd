@@ -10,8 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signout, profile } from "../../store/actions/authActions";
 const NaveBar = () => {
-  const history = useHistory();
-
+	const history = useHistory();
   const user = useSelector((state) => state.authReducer.user);
   const dispatch = useDispatch();
   return (

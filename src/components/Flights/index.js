@@ -1,9 +1,11 @@
+
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+
 //Components
-import Loading from "../Loading";
-import FlightItem from "./FlightItem";
+import Loading from '../Loading';
+import FlightItem from './FlightItem';
 //Styling
 import { StyledList } from "./styles";
 import { Button } from "@material-ui/core";
