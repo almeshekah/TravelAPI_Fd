@@ -3,22 +3,28 @@ import { Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux';
 //Components
 
-import Home from '../Home';
-import UserSignin from '../UserSignin';
-import UserSignup from '../UserSignup';
-import AirlineSignup from '../AirlineSignup';
-import AirlineSignin from '../AirlineSignin';
-import FlightList from '../FlightList';
-import AirlineList from '../AirlineList';
-import FlightAdd from '../FlightAdd';
-import AirlineDetail from '../AirlineDetail';
-import Userprofile from '../Userprofile';
-import Flights from '../Flights';
+
+import Home from "../Home";
+import UserSignin from "../UserSignin";
+import UserSignup from "../UserSignup";
+import AirlineSignup from "../AirlineSignup";
+import AirlineSignin from "../AirlineSignin";
+import FlightList from "../FlightList";
+import AirlineList from "../AirlineList";
+import FlightAdd from "../FlightAdd";
+import AirlineDetail from "../AirlineDetail";
+import Userprofile from "../Userprofile";
+import Flights from "../Flights";
+import Roundtrip from "../Flights/Roundtrip";
 import BookingForm from '../BookingForm';
 
 const Routes = () => {
-	const flights = useSelector((state) => state.flightReducer.flights);
-	const airlines = useSelector((state) => state.airlineReducer.airlines);
+  const { flights, flightsLoading, returnFlights, roundtrip } = useSelector(
+    (state) => state.flightReducer
+  );
+  const bookedFlights = useSelector((state) => state.bookingReducer.flights);
+  const { airlines } = useSelector((state) => state.airlineReducer);
+
 
 	return (
 		<Switch>
@@ -49,25 +55,36 @@ const Routes = () => {
 			>
 				<FlightAdd />
 			</Route>
-
-			<Route path="/flightsearch">
-				<Flights />
-			</Route>
-
-			<Route path="/airlines/:airlineSlug">
-				<AirlineDetail flights={flights} />
-			</Route>
-			<Route path="/flights">
-				<FlightList flights={flights} />
-			</Route>
-			<Route path="/airlines">
-				<AirlineList airlines={airlines} />
-			</Route>
-			<Route path="/">
-				<Home />
-			</Route>
-		</Switch>
-	);
+      <Route path="/flightsearch">
+        <Flights
+          flights={flights}
+          returnFlights={returnFlights}
+          loading={flightsLoading}
+          bookedFlights={bookedFlights}
+        />
+      </Route>
+      <Route path="/returnFlights">
+        <Roundtrip
+          flights={flights}
+          returnFlights={returnFlights}
+          loading={flightsLoading}
+          bookedFlights={bookedFlights}
+        />
+        <Route path="/airlines/:airlineSlug">
+          <AirlineDetail />
+        </Route>
+        <Route path="/flights">
+          <FlightList />
+        </Route>
+      </Route>
+      <Route path="/airlines">
+        <AirlineList airlines={airlines} />
+      </Route>
+      <Route path="/">
+        <Home />
+      </Route>
+    </Switch>
+  );
 };
 
 export default Routes;

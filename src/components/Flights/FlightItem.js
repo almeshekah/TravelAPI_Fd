@@ -6,11 +6,12 @@ import {
   Typography,
   CardContent,
   CardActions,
+  Card,
 } from "@material-ui/core";
 import { Flight, DateRange, Schedule } from "@material-ui/icons/";
-import { StyledPrice, StyledCard } from "./styles";
+import { StyledPrice, StyledCard, StyledImage } from "./styles";
 
-const FlightItem = ({ flight }) => {
+const FlightItem = ({ flight, selectedFlight, handleSelect }) => {
   const stringTime = (time) => {
     let hrs = Math.floor(time);
     let mins = Math.round((time % 1) * 60);
@@ -20,9 +21,10 @@ const FlightItem = ({ flight }) => {
   };
   const stringDate = (date) => date.split("-").reverse().join("/");
   return (
-    <div>
-      <StyledCard alignItems="flex-start">
+    <>
+      <StyledCard selected={selectedFlight == flight.id}>
         <CardContent>
+          <Typography variant="h5">{flight.name}</Typography>
           <Typography variant="h5">
             <Schedule /> {stringTime(flight.departureTime)} -{" "}
             {stringTime(flight.arrivalTime)}
@@ -36,18 +38,24 @@ const FlightItem = ({ flight }) => {
             {flight.destination.airport}-({flight.destination.code})
           </Typography>
           <Typography variant="subtitle1">
-            {flight.airlines.logo} {flight.airlines.name}
+            <StyledImage
+              src={flight.airlines.logo}
+              alt={flight.airlines.name}
+            />{" "}
+            {flight.airlines.name}
           </Typography>
           <StyledPrice variant="h4">
             Starting From: {flight.economyPrice} BD
           </StyledPrice>
         </CardContent>
         <CardActions>
-          <Button size="small">Book</Button>
+          <Button variant="outlined" onClick={() => handleSelect(flight.id)}>
+            Select
+          </Button>
         </CardActions>
       </StyledCard>
       <Divider />
-    </div>
+    </>
   );
 };
 
