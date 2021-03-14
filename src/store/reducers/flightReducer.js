@@ -2,8 +2,7 @@ import { FETCH_FLIGHTS, CREATE_FLIGHT, UPDATE_FLIGHT } from "../actions/types";
 
 const initialState = {
   flights: [],
-  return: [],
-  roundtrip: false,
+  returnFlights: [],
   flightsLoading: true,
 };
 
@@ -13,6 +12,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         flights: action.payload.flights,
+        returnFlights: action.payload.returnFlights,
         flightsLoading: false,
       };
     case CREATE_FLIGHT:

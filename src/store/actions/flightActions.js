@@ -6,9 +6,10 @@ export const fetchFlights = () => {
   return async (dispatch) => {
     try {
       const res = await instance.get("/flights");
+      const { flights } = res.data;
       dispatch({
         type: FETCH_FLIGHTS,
-        payload: { flights: res.data },
+        payload: { flights },
       });
     } catch (error) {
       console.log(error);
@@ -37,9 +38,14 @@ export const searchFlight = (filter, history) => {
   return async (dispatch) => {
     try {
       const res = await instance.post("/flights/search", filter);
+      const { returnFlights, flights } = res.data;
+      console.log(returnFlights);
       await dispatch({
         type: FETCH_FLIGHTS,
-        payload: { flights: res.data },
+        payload: {
+          flights,
+          returnFlights,
+        },
       });
       history.push("/flightsearch");
     } catch (error) {
