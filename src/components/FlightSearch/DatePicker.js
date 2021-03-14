@@ -8,7 +8,7 @@ const DatePicker = ({ filter, setFilter, set }) => {
     <Calendar
       onChange={(item) => setFilter({ ...filter, [set]: item })}
       date={filter[set]}
-      minDate={new Date()}
+      minDate={set === "returnDate" ? filter.departureDate : new Date()}
     />
   );
 };
