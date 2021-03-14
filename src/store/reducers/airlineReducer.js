@@ -1,4 +1,4 @@
-import { FETCH_AIRLINE } from "../actions/types";
+import { FETCH_AIRLINES } from "../actions/types";
 
 const initialState = {
   airlines: [],
@@ -7,7 +7,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_AIRLINE:
+    case FETCH_AIRLINES:
       return {
         ...state,
         airlines: action.payload.airlines,
