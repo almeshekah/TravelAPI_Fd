@@ -5,12 +5,11 @@ import { useState } from "react";
 import Loading from "../Loading";
 import FlightItem from "./FlightItem";
 //Styling
-import { StyledList } from "./styles";
+import { StyledList, StyledMessage } from "./styles";
 import { Button } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
 import { bookingCreate } from "../../store/actions/bookingActions";
 
-const Flights = ({ flights, returnFlights, loading, bookedFlights }) => {
+const Roundtrip = ({ flights, returnFlights, loading, bookedFlights }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [selectedFlight, setSelectedFlight] = useState(null);
@@ -18,21 +17,37 @@ const Flights = ({ flights, returnFlights, loading, bookedFlights }) => {
   if (loading) return <Loading />;
 
   const handleSelect = (flightId) => setSelectedFlight(flightId);
+
+  const bookedFlight = flights.find((flight) => flight.id === bookedFlights[0]);
+
   const handleSubmit = () => {
     dispatch(bookingCreate(selectedFlight, history, returnFlights.length));
     handleSelect(null);
   };
-  console.log(selectedFlight);
-  const flightList = flights.map((flight) => (
-    <FlightItem
-      flight={flight}
-      selectedFlight={selectedFlight}
-      handleSelect={handleSelect}
-    />
-  ));
+  const flightList = returnFlights
+    .filter(
+      (flight) =>
+        flight.departureDate !== bookedFlight.departureDate ||
+        +flight.departureTime >= 2 + +bookedFlight.arrivalTime
+    )
+    .map((flight) => (
+      <FlightItem
+        flight={flight}
+        selectedFlight={selectedFlight}
+        handleSelect={handleSelect}
+      />
+    ));
+
   return (
     <StyledList>
-      {flightList}
+      {flightList.length === 0 ? (
+        <StyledMessage>
+          No return flights available 😔 Please adjust your search criteria or
+          choose another departing flight.
+        </StyledMessage>
+      ) : (
+        flightList
+      )}
       {selectedFlight && (
         <Button
           variant="contained"
@@ -40,11 +55,11 @@ const Flights = ({ flights, returnFlights, loading, bookedFlights }) => {
           fullWidth
           onClick={handleSubmit}
         >
-          {returnFlights.length ? "Next" : "Book"}
+          Book
         </Button>
       )}
     </StyledList>
   );
 };
 
-export default Flights;
+export default Roundtrip;
