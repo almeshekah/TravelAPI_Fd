@@ -9,3 +9,5 @@ export const SEARCH_FLIGHT = 'SEARCH_FLIGHT';
 
 export const FETCH_DESTINATIONS = 'FETCH_DESTINATIONS';
 export const FETCH_AIRLINE = 'FETCH_AIRLINE';
+
+export const CREATE_BOOK = 'CREATE_BOOK';
