@@ -8,7 +8,7 @@ import {
 } from "./styles";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { singout, profile } from "../../store/actions/authActions";
+import { signout, profile } from "../../store/actions/authActions";
 const NaveBar = () => {
   const history = useHistory();
 
@@ -32,7 +32,7 @@ const NaveBar = () => {
             <>
               <UsernameStyled>welcome , {user.username}! </UsernameStyled>
               <NavBarliStyled>
-                <NavbarLink onClick={() => dispatch(singout(history))}>
+                <NavbarLink onClick={() => dispatch(signout(history))}>
                   Signout
                 </NavbarLink>
               </NavBarliStyled>

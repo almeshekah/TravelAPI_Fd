@@ -1,17 +1,17 @@
-import { FETCH_AIRLINES } from "../actions/types";
+import { CREATE_BOOKING } from "../actions/types";
 
 const initialState = {
-  airlines: [],
-  // loading: true,
+  flights: [],
+  bookingLoading: true,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_AIRLINES:
+    case CREATE_BOOKING:
+      const { flightId } = action.payload;
       return {
         ...state,
-        airlines: action.payload.airlines,
-        // loading: false,
+        flights: [...state.flights, flightId],
       };
 
     default:

@@ -25,7 +25,8 @@ const FlightSearch = () => {
   const [filter, setFilter] = useState({
     passangers: 2,
     roundtrip: false,
-    date: new Date(),
+    departureDate: new Date(),
+    returnDate: addDays(new Date(), 7),
   });
   if (destinationLoading) return <Loading />;
 
@@ -51,7 +52,10 @@ const FlightSearch = () => {
       searchFlight(
         {
           ...filter,
-          departureDate: format(filter.dates.startDate, "yyyy-MM-dd"),
+          departureDate: format(filter.departureDate, "yyyy-MM-dd"),
+          returnDate: filter.returnDate
+            ? format(filter.returnDate, "yyyy-MM-dd")
+            : null,
           departureAirport: options.departureAirport.value,
           arrivalAirport: options.arrivalAirport.value,
         },
@@ -61,8 +65,14 @@ const FlightSearch = () => {
   };
   return (
     <StyledFormControl>
-      <h3>Flight Dates</h3>
-      <DatePicker filter={filter} setFilter={setFilter} set="dates" />
+      <h3>Departure Date</h3>
+      <DatePicker filter={filter} setFilter={setFilter} set="departureDate" />
+      {filter.roundtrip && (
+        <>
+          <h3>Return Date</h3>
+          <DatePicker filter={filter} setFilter={setFilter} set="returnDate" />
+        </>
+      )}
       <h3>
         Number of Passangers <People />
       </h3>

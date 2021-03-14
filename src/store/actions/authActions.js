@@ -42,7 +42,7 @@ export const signin = (user, history) => {
   };
 };
 
-export const singout = (history) => {
+export const signout = (history) => {
   localStorage.removeItem("myToken");
   delete instance.defaults.headers.common.Authorization;
   history.replace("/");
@@ -83,10 +83,9 @@ export const airlinesignin = (user, history) => {
   };
 };
 
-export const airlinesingout = () => {
+export const airlinesignout = () => {
   localStorage.removeItem("myToken");
   delete instance.defaults.headers.common.Authorization;
-
   return {
     type: SET_USER,
     payload: null,
@@ -102,7 +101,7 @@ export const checkForToken = () => (dispatch) => {
       dispatch(setUser(token));
     } else {
       localStorage.removeItem("myToken");
-      dispatch(singout());
+      dispatch(signout());
     }
   }
 };

@@ -14,10 +14,14 @@ import FlightAdd from "../FlightAdd";
 import AirlineDetail from "../AirlineDetail";
 import Userprofile from "../Userprofile";
 import Flights from "../Flights";
+import Roundtrip from "../Flights/Roundtrip";
 
 const Routes = () => {
-  const flights = useSelector((state) => state.flightReducer.flights);
-  const airlines = useSelector((state) => state.airlineReducer.airlines);
+  const { flights, flightsLoading, returnFlights, roundtrip } = useSelector(
+    (state) => state.flightReducer
+  );
+  const bookedFlights = useSelector((state) => state.bookingReducer.flights);
+  const { airlines } = useSelector((state) => state.airlineReducer);
 
   return (
     <Switch>
@@ -47,14 +51,26 @@ const Routes = () => {
       </Route>
 
       <Route path="/flightsearch">
-        <Flights />
+        <Flights
+          flights={flights}
+          returnFlights={returnFlights}
+          loading={flightsLoading}
+          bookedFlights={bookedFlights}
+        />
       </Route>
-
-      <Route path="/airlines/:airlineSlug">
-        <AirlineDetail flights={flights} />
-      </Route>
-      <Route path="/flights">
-        <FlightList flights={flights} />
+      <Route path="/returnFlights">
+        <Roundtrip
+          flights={flights}
+          returnFlights={returnFlights}
+          loading={flightsLoading}
+          bookedFlights={bookedFlights}
+        />
+        <Route path="/airlines/:airlineSlug">
+          <AirlineDetail />
+        </Route>
+        <Route path="/flights">
+          <FlightList />
+        </Route>
       </Route>
       <Route path="/airlines">
         <AirlineList airlines={airlines} />
