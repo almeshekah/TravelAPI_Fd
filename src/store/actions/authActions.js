@@ -101,7 +101,7 @@ export const checkForToken = () => (dispatch) => {
       dispatch(setUser(token));
     } else {
       localStorage.removeItem("myToken");
-      dispatch(singout());
+      dispatch(signout());
     }
   }
 };
