@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Switch } from "react-router";
 import { useSelector } from "react-redux";
 //Components
-
 import Home from "../Home";
 import UserSignin from "../UserSignin";
 import UserSignup from "../UserSignup";
@@ -16,13 +15,17 @@ import Userprofile from "../Userprofile";
 import Flights from "../Flights";
 import Roundtrip from "../Flights/Roundtrip";
 import BookingForm from "../BookingForm";
+import Loading from "../Loading";
 
 const Routes = () => {
-  const { flights, flightsLoading, returnFlights, roundtrip } = useSelector(
+  const { flights, flightsLoading, returnFlights } = useSelector(
     (state) => state.flightReducer
   );
   const bookedFlights = useSelector((state) => state.bookingReducer.flights);
   const { airlines } = useSelector((state) => state.airlineReducer);
+  const { passengersCount, travelClassId } = useSelector(
+    (state) => state.bookingReducer
+  );
 
   return (
     <Switch>
@@ -61,6 +64,7 @@ const Routes = () => {
           returnFlights={returnFlights}
           loading={flightsLoading}
           bookedFlights={bookedFlights}
+          travelClassId={travelClassId}
         />
       </Route>
 
@@ -70,6 +74,7 @@ const Routes = () => {
           returnFlights={returnFlights}
           loading={flightsLoading}
           bookedFlights={bookedFlights}
+          travelClassId={travelClassId}
         />
       </Route>
 
@@ -86,7 +91,7 @@ const Routes = () => {
       </Route>
 
       <Route path="/booking">
-        <BookingForm />
+        <BookingForm passengersCount={passengersCount} />
       </Route>
 
       <Route path="/">

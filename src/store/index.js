@@ -5,6 +5,7 @@ import { checkForToken } from "./actions/authActions";
 import { fetchFlights } from "./actions/flightActions";
 import { fetchDestinations } from "./actions/destinationActions";
 import { fetchAirlines } from "./actions/airlineActions";
+import { fetchTravelClasses } from "./actions/TravelClassActions";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -16,5 +17,6 @@ store.dispatch(checkForToken());
 store.dispatch(fetchFlights());
 store.dispatch(fetchDestinations());
 store.dispatch(fetchAirlines());
+store.dispatch(fetchTravelClasses());
 
 export default store;
