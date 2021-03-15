@@ -12,6 +12,7 @@ import { Flight, DateRange, Schedule } from "@material-ui/icons/";
 import { StyledPrice, StyledCard, StyledImage } from "./styles";
 
 const FlightItem = ({ flight, selectedFlight, handleSelect }) => {
+  // Replace with moment.js
   const stringTime = (time) => {
     let hrs = Math.floor(time);
     let mins = Math.round((time % 1) * 60);
@@ -26,6 +27,7 @@ const FlightItem = ({ flight, selectedFlight, handleSelect }) => {
         <CardContent>
           <Typography variant="h5">{flight.name}</Typography>
           <Typography variant="h5">
+            {/* User Interpolation */}
             <Schedule /> {stringTime(flight.departureTime)} -{" "}
             {stringTime(flight.arrivalTime)}
           </Typography>
@@ -34,6 +36,7 @@ const FlightItem = ({ flight, selectedFlight, handleSelect }) => {
           </Typography>
           <Typography variant="h7">
             <Flight />
+            {/* User Interpolation */}
             {flight.origin.airport}-({flight.origin.code}) to{" "}
             {flight.destination.airport}-({flight.destination.code})
           </Typography>
