@@ -1,13 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { useSelector } from "react-redux";
 
 import { ItemWrapper } from "./styles";
 
 const AirlineItem = ({ airline }) => {
-  const flights = useSelector((state) => state.flightReducer.flights);
-
   return (
     <>
       <ItemWrapper>
