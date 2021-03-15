@@ -1,31 +1,27 @@
-
-import { CREATE_BOOK } from '../actions/types';
-import { CREATE_BOOKING } from "../actions/types";
+import { CREATE_BOOKING, SET_PASSANGERS } from "../actions/types";
 const initialState = {
-	bookings: [],
-	bookingsLoading: true,
   flights: [],
+  passangers: 0,
+  bookingsLoading: true,
 };
 
 const reducer = (state = initialState, action) => {
-	switch (action.type) {
-		case CREATE_BOOK:
-			const newBook = action.payload.newBook;
-			return {
-				...state,
-				bookings: [...state.bookings, newBook],
-			};
+  switch (action.type) {
     case CREATE_BOOKING:
       const { flightId } = action.payload;
       return {
         ...state,
         flights: [...state.flights, flightId],
       };
-
-		default:
-			return state;
-	}
-
+    case SET_PASSANGERS:
+      const { passangers } = action.payload;
+      return {
+        ...state,
+        passangers,
+      };
+    default:
+      return state;
+  }
 };
 
 export default reducer;

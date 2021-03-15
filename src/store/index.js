@@ -13,7 +13,6 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk))
 );
 store.dispatch(checkForToken());
-store.dispatch(checkForToken());
 store.dispatch(fetchFlights());
 store.dispatch(fetchDestinations());
 store.dispatch(fetchAirlines());
