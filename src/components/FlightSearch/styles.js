@@ -19,7 +19,7 @@ export const StyledFormControl = styled(FormControl)`
     width: 50px;
   }
   div {
-    .passanger {
+    .passenger {
       h3 {
         align-items: center;
         display: flex;
