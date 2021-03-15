@@ -1,18 +1,23 @@
-
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 //Components
-import Loading from '../Loading';
-import FlightItem from './FlightItem';
+import Loading from "../Loading";
+import FlightItem from "./FlightItem";
 //Styling
 import { StyledList } from "./styles";
 import { Button } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
-import { bookingCreate } from "../../store/actions/bookingActions";
+import { chosenFlights } from "../../store/actions/bookingActions";
 
-const Flights = ({ flights, returnFlights, loading, bookedFlights }) => {
+const Flights = ({
+  flights,
+  returnFlights,
+  loading,
+  bookedFlights,
+  travelClassId,
+}) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [selectedFlight, setSelectedFlight] = useState(null);
@@ -21,7 +26,9 @@ const Flights = ({ flights, returnFlights, loading, bookedFlights }) => {
 
   const handleSelect = (flightId) => setSelectedFlight(flightId);
   const handleSubmit = () => {
-    dispatch(bookingCreate(selectedFlight, history, returnFlights.length));
+    dispatch(
+      chosenFlights(selectedFlight, history, returnFlights.length, "departing")
+    );
     handleSelect(null);
   };
   console.log(selectedFlight);
@@ -30,6 +37,7 @@ const Flights = ({ flights, returnFlights, loading, bookedFlights }) => {
       flight={flight}
       selectedFlight={selectedFlight}
       handleSelect={handleSelect}
+      travelClassId={travelClassId}
     />
   ));
   return (
