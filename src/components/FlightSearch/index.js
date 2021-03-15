@@ -11,6 +11,7 @@ import { searchFlight } from "../../store/actions/flightActions";
 import DatePicker from "./DatePicker";
 import AirportSelect from "./AirportSelect";
 import { useHistory } from "react-router";
+import { passangersNumber } from "../../store/actions/bookingActions";
 
 const FlightSearch = () => {
   const { destinations, destinationLoading } = useSelector(
@@ -48,6 +49,7 @@ const FlightSearch = () => {
   };
 
   const handleSubmit = () => {
+    dispatch(passangersNumber(filter.passangers));
     dispatch(
       searchFlight(
         {

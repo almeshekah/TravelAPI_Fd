@@ -4,7 +4,9 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet";
+//Components
 import { bookingCreate } from "../../store/actions/bookingActions";
+//Styling
 import {
   FormStyled,
   LabelStyled,
@@ -14,33 +16,35 @@ import {
   FormAddButtonStyled,
 } from "../../styles";
 
-import { register } from "../../serviceWorker";
-
 const BookingForm = () => {
-  const _user = useSelector((state) => state.authReducer.user);
-  let cont = 3;
+  const { user } = useSelector((state) => state.authReducer);
+  const passangersCount = useSelector(
+    (state) => state.bookingReducer.passangers
+  );
 
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    passport: "",
-    birthDate: "",
-    userId: null,
-  });
-
-  if (_user && !user.userId) setUser({ ...user, ["userId"]: _user.id });
+  const initialState = [];
+  for (let i = 0; i < passangersCount; i++) {
+    arr.push({
+      firstName: "",
+      lastName: "",
+      email: "",
+      passport: "",
+      birthDate: "",
+      userId: user ? user.id : null,
+    });
+  }
+  const [passangers, setPassangers] = useState(inititalState);
 
   const handleChange = (event) => {
-    setUser({ ...user, [event.target.name]: event.target.value });
+    setPassangers({ ...user, [event.target.name]: event.target.value });
   };
   const [passengers, setPassengers] = useState([]);
   const [numpassengers, setnumpassengers] = useState(0);
   const restForm = () => {
-    setUser({
+    setPassangers({
       firstName: "",
       lastName: "",
       email: "",
