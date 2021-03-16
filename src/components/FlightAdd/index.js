@@ -57,8 +57,6 @@ const FlightAdd = () => {
     originId: null,
   });
 
-  // console.log("checking update ", foundFlight);
-
   if (destinationLoading) return <Loading />;
 
   const departureOptions = destinations.map((destination) => ({
@@ -83,7 +81,6 @@ const FlightAdd = () => {
       event.preventDefault();
       if (foundFlight) {
         dispatch(updateFlight(flight, airline.id));
-        console.log(flight);
       } else {
         dispatch(
           createFlight(

@@ -11,7 +11,12 @@ import {
 import { Flight, DateRange, Schedule } from "@material-ui/icons/";
 import { StyledPrice, StyledCard, StyledImage } from "./styles";
 
-const FlightItem = ({ flight, selectedFlight, handleSelect }) => {
+const FlightItem = ({
+  flight,
+  selectedFlight,
+  handleSelect,
+  travelClassId,
+}) => {
   const stringTime = (time) => {
     let hrs = Math.floor(time);
     let mins = Math.round((time % 1) * 60);
@@ -26,26 +31,30 @@ const FlightItem = ({ flight, selectedFlight, handleSelect }) => {
         <CardContent>
           <Typography variant="h5">{flight.name}</Typography>
           <Typography variant="h5">
-            <Schedule /> {stringTime(flight.departureTime)} -{" "}
-            {stringTime(flight.arrivalTime)}
+            <Schedule />
+            {`${stringTime(flight.departureTime)} ${stringTime(
+              flight.arrivalTime
+            )}`}
           </Typography>
           <Typography variant="h6">
             <DateRange /> {stringDate(flight.departureDate)}
           </Typography>
-          <Typography variant="h7">
+          <Typography>
             <Flight />
-            {flight.origin.airport}-({flight.origin.code}) to{" "}
-            {flight.destination.airport}-({flight.destination.code})
+            {`${flight.origin.airport}-(${flight.origin.code}) to 
+            ${flight.destination.airport}-(${flight.destination.code})`}
           </Typography>
           <Typography variant="subtitle1">
             <StyledImage
               src={flight.airlines.logo}
               alt={flight.airlines.name}
-            />{" "}
+            />
             {flight.airlines.name}
           </Typography>
-          <StyledPrice variant="h4">
-            Starting From: {flight.economyPrice} BD
+          <StyledPrice variant="h6">
+            {travelClassId === 1
+              ? `Economy Price: ${flight.economyPrice} BD per passenger`
+              : `Business Price: ${flight.businessPrice} BD per passenger`}
           </StyledPrice>
         </CardContent>
         <CardActions>

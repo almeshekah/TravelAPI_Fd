@@ -11,10 +11,14 @@ import { searchFlight } from "../../store/actions/flightActions";
 import DatePicker from "./DatePicker";
 import AirportSelect from "./AirportSelect";
 import { useHistory } from "react-router";
+import { passengersDetails } from "../../store/actions/bookingActions";
 
 const FlightSearch = () => {
   const { destinations, destinationLoading } = useSelector(
     (state) => state.destinationReducer
+  );
+  const { travelClasses, travelClassLoading } = useSelector(
+    (state) => state.travelClassReducer
   );
   const dispatch = useDispatch();
   const history = useHistory();
@@ -23,12 +27,18 @@ const FlightSearch = () => {
     departureAirport: null,
   });
   const [filter, setFilter] = useState({
-    passangers: 2,
+    passengers: 2,
     roundtrip: false,
     departureDate: new Date(),
     returnDate: addDays(new Date(), 7),
   });
-  if (destinationLoading) return <Loading />;
+  if (destinationLoading || travelClassLoading) return <Loading />;
+
+  const travelClassOptions = travelClasses.map((travelClass) => ({
+    value: travelClass.id,
+    label: `${travelClass.type}`,
+    name: "travelClassId",
+  }));
 
   const departureOptions = destinations.map((destination) => ({
     value: destination.id,
@@ -48,6 +58,7 @@ const FlightSearch = () => {
   };
 
   const handleSubmit = () => {
+    dispatch(passengersDetails(filter.passengers, options.travelClassId.value));
     dispatch(
       searchFlight(
         {
@@ -58,6 +69,7 @@ const FlightSearch = () => {
             : null,
           departureAirport: options.departureAirport.value,
           arrivalAirport: options.arrivalAirport.value,
+          travelClassId: options.travelClassId.value,
         },
         history
       )
@@ -74,14 +86,14 @@ const FlightSearch = () => {
         </>
       )}
       <h3>
-        Number of Passangers <People />
+        Number of Passengers <People />
       </h3>
       <Input
         id="my-input"
         min={1}
         type="number"
-        name="passangers"
-        value={filter.passangers}
+        name="passengers"
+        value={filter.passengers}
         onChange={handleChange}
       />
       <h3>
@@ -101,6 +113,13 @@ const FlightSearch = () => {
         handleOptions={handleOptions}
         _options={arrivalOptions}
         set="arrivalAirport"
+      />
+      <h3>Travel Class</h3>
+      <AirportSelect
+        options={options}
+        handleOptions={handleOptions}
+        _options={travelClassOptions}
+        set="travelClassId"
       />
       <Button
         color="primary"

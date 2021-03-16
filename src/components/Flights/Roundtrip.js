@@ -7,9 +7,15 @@ import FlightItem from "./FlightItem";
 //Styling
 import { StyledList, StyledMessage } from "./styles";
 import { Button } from "@material-ui/core";
-import { bookingCreate } from "../../store/actions/bookingActions";
+import { chosenFlights } from "../../store/actions/bookingActions";
 
-const Roundtrip = ({ flights, returnFlights, loading, bookedFlights }) => {
+const Roundtrip = ({
+  flights,
+  returnFlights,
+  loading,
+  bookedFlights,
+  travelClassId,
+}) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [selectedFlight, setSelectedFlight] = useState(null);
@@ -18,23 +24,27 @@ const Roundtrip = ({ flights, returnFlights, loading, bookedFlights }) => {
 
   const handleSelect = (flightId) => setSelectedFlight(flightId);
 
-  const bookedFlight = flights.find((flight) => flight.id === bookedFlights[0]);
-
+  const departingFlight = flights.find(
+    (flight) => flight.id === bookedFlights.departing
+  );
   const handleSubmit = () => {
-    dispatch(bookingCreate(selectedFlight, history, returnFlights.length));
+    dispatch(
+      chosenFlights(selectedFlight, history, returnFlights.length, "returning")
+    );
     handleSelect(null);
   };
   const flightList = returnFlights
     .filter(
       (flight) =>
-        flight.departureDate !== bookedFlight.departureDate ||
-        +flight.departureTime >= 2 + +bookedFlight.arrivalTime
+        flight.departureDate !== departingFlight.departureDate ||
+        +flight.departureTime >= 2 + +departingFlight.arrivalTime
     )
     .map((flight) => (
       <FlightItem
         flight={flight}
         selectedFlight={selectedFlight}
         handleSelect={handleSelect}
+        travelClassId={travelClassId}
       />
     ));
 
