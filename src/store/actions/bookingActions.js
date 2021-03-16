@@ -1,6 +1,13 @@
 import { CREATE_BOOKING, SET_DETAILS, SET_FLIGHTS } from "./types";
 import instance from "./instance";
-
+import { Alert, AlertTitle } from "@material-ui/lab";
+const bookingAlert = () => {
+  <Alert severity="success">
+    <AlertTitle>Booking successful</AlertTitle>
+    Your booking has been completed successfully. A confirmation email has been
+    sent.
+  </Alert>;
+};
 export const bookingCreate = (
   passengers,
   bookingReducer,
@@ -23,6 +30,7 @@ export const bookingCreate = (
       payload: res.data,
     });
     history.push("/");
+    bookingAlert();
   } catch (error) {
     console.log(error);
   }

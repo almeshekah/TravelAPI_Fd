@@ -18,7 +18,7 @@ import { register } from "../../serviceWorker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
-const UserSignin = () => {
+const UserSignin = ({ bookedFlights }) => {
   const eye = <FontAwesomeIcon icon={faEye} />;
   const { errors } = useForm();
   const history = useHistory();
@@ -48,7 +48,7 @@ const UserSignin = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(signin(user, history));
+    dispatch(signin(user, history, bookedFlights));
     restForm();
   };
   return (
