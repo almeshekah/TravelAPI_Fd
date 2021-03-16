@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signout, profile } from "../../store/actions/authActions";
 const NaveBar = () => {
-	const history = useHistory();
+  const history = useHistory();
   const user = useSelector((state) => state.authReducer.user);
   const dispatch = useDispatch();
   return (
@@ -21,20 +21,16 @@ const NaveBar = () => {
           <NavBarliStyled>
             <NavbarLink to="/">Home</NavbarLink>
           </NavBarliStyled>
-          <NavBarliStyled>
-            <NavbarLink to="/flights">Flights</NavbarLink>
-          </NavBarliStyled>
-          <NavBarliStyled>
-            <NavbarLink to="/airlines">Airlines</NavbarLink>
-          </NavBarliStyled>
-          {user ? (
+          {user && (
+            <NavBarliStyled>
+              <NavbarLink onClick={() => dispatch(signout(history))}>
+                Signout
+              </NavbarLink>
+            </NavBarliStyled>
+          )}
+          {user && !user.isAirline ? (
             <>
-              <UsernameStyled>welcome , {user.username}! </UsernameStyled>
-              <NavBarliStyled>
-                <NavbarLink onClick={() => dispatch(signout(history))}>
-                  Signout
-                </NavbarLink>
-              </NavBarliStyled>
+              <UsernameStyled>welcome, {user.username}!</UsernameStyled>
               <NavBarliStyled>
                 <NavbarLink
                   onClick={() => dispatch(profile(user.id))}
@@ -60,6 +56,16 @@ const NaveBar = () => {
           <NavBarliStyled>
             <NavbarLink to="/airlines/signin">Airline Signin</NavbarLink>
           </NavBarliStyled>
+          {user && user.isAirline && (
+            <>
+              <NavBarliStyled>
+                <NavbarLink to="/flights">Flights</NavbarLink>
+              </NavBarliStyled>
+              <NavBarliStyled>
+                <NavbarLink to="/airlines">Airlines</NavbarLink>
+              </NavBarliStyled>
+            </>
+          )}
         </NavBarUlStyled>
       </NavBarStyled>
     </>

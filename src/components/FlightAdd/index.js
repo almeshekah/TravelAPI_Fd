@@ -157,7 +157,6 @@ const FlightAdd = () => {
                     handleOptions={handleOptions}
                     _options={departureOptions}
                     set="originId"
-                    // value={flight.origin}
                   />
                 </LabelStyled>
 
@@ -169,7 +168,6 @@ const FlightAdd = () => {
                     handleOptions={handleOptions}
                     _options={arrivalOptions}
                     set="destinationId"
-                    // value={flight.destination}
                   />
                 </LabelStyled>
 

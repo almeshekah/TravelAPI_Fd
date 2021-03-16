@@ -9,7 +9,6 @@ import {
 
 const setUser = (token) => {
   localStorage.setItem("myToken", token);
-  //the req with instance will be will a token
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   return {
     type: SET_USER,
@@ -22,7 +21,7 @@ export const signup = (newUser, history) => {
     try {
       const formData = new FormData();
       for (const key in newUser) formData.append(key, newUser[key]);
-      const res = await instance.post("/user/Signup", formData);
+      const res = await instance.post("/user/Signup", formData); //better naming lower case
       localStorage.setItem("myToken", res.data.token);
       dispatch(setUser(res.data.token));
       history.replace("/");
@@ -36,7 +35,7 @@ export const signup = (newUser, history) => {
 export const signin = (user, history, bookedFlights) => {
   return async (dispatch) => {
     try {
-      const res = await instance.post("/user/Signin", user);
+      const res = await instance.post("/user/Signin", user); ////better naming lower case
       localStorage.setItem("myToken", res.data.token);
       await dispatch(setUser(res.data.token));
       bookedFlights.departing ? history.goBack() : history.replace("/");
@@ -111,7 +110,8 @@ export const checkForToken = () => (dispatch) => {
   }
 };
 
-export const profile = (userId) => async (dispatch) => {
+//userId not being used
+export const profile = () => async (dispatch) => {
   try {
     const res = await instance.get(`/user/myprofile`);
     dispatch({
@@ -125,7 +125,7 @@ export const profile = (userId) => async (dispatch) => {
 
 export const updateProfile = (user) => async (dispatch) => {
   try {
-    await instance.put(`/user/Updateprofile`, user);
+    await instance.put(`/user/Updateprofile`, user); //better naming lower case
     dispatch({
       type: UPDATE_PROFILE,
       payload: user,
@@ -136,6 +136,7 @@ export const updateProfile = (user) => async (dispatch) => {
 };
 
 export const history = () => async (dispatch) => {
+  //change name
   try {
     const res = await instance.get(`/user/history`);
     dispatch({

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { DetailWrapper, GoButtonStyled } from "./styles";
 import { AddButtonStyled } from "../../styles";
 import FlightList from "../FlightList";
-
+//sort imports 'styles, components, etc'
 const AirlineDetail = () => {
   const { airlineSlug } = useParams();
 

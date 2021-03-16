@@ -20,12 +20,10 @@ export const fetchFlights = () => {
 export const createFlight = (newFlight, airlineId) => {
   return async (dispatch) => {
     try {
-      // console.log(newFlight);
       const res = await instance.post(
         `/airlines/${airlineId}/flights`,
         newFlight
       );
-
       dispatch({
         type: CREATE_FLIGHT,
         payload: { newFlight: res.data },
@@ -62,7 +60,6 @@ export const updateFlight = (updatedFlight, airlineId) => {
         `/airlines/${airlineId}/flights/${updatedFlight.id}`,
         updatedFlight
       );
-
       dispatch({
         type: UPDATE_FLIGHT,
         payload: { updatedFlight: res.data },

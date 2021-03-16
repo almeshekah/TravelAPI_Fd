@@ -1,6 +1,4 @@
 import { useState } from "react";
-// Components
-import FlightSearch from "../FlightSearch";
 // Styling
 import { FlightTakeoff } from "@material-ui/icons";
 import { Button } from "@material-ui/core";

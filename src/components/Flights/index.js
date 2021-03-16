@@ -8,16 +8,9 @@ import FlightItem from "./FlightItem";
 //Styling
 import { StyledList } from "./styles";
 import { Button } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
 import { chosenFlights } from "../../store/actions/bookingActions";
 
-const Flights = ({
-  flights,
-  returnFlights,
-  loading,
-  bookedFlights,
-  travelClassId,
-}) => {
+const Flights = ({ flights, returnFlights, loading, travelClassId }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [selectedFlight, setSelectedFlight] = useState(null);

@@ -33,7 +33,6 @@ const AirlineSignin = () => {
   const [user, setUser] = useState({
     username: "",
     password: "",
-    // email: "",
   });
 
   const handleChange = (event) => {
@@ -44,7 +43,6 @@ const AirlineSignin = () => {
     setUser({
       username: "",
       password: "",
-      // email: "",
     });
   };
 

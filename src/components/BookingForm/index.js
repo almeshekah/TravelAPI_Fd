@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 //Components
 import { bookingCreate } from "../../store/actions/bookingActions";
-import Loading from "../Loading";
 import PassengerForm from "./PassengerForm";
 //Styling
 import { FormStyled, FormAddButtonStyled } from "../../styles";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import { Button } from "@material-ui/core";
 import { AlertContent } from "./styles";
+
 const BookingForm = ({ passengersCount }) => {
   const { user } = useSelector((state) => state.authReducer);
   const bookingReducer = useSelector((state) => state.bookingReducer);
