@@ -120,9 +120,7 @@ export const profile = (userId) => async (dispatch) => {
 
 export const updateProfile = (user) => async (dispatch) => {
   try {
-    console.log("hi");
     await instance.put(`/user/Updateprofile`, user);
-    console.log(user);
     dispatch({
       type: UPDATE_PROFILE,
       payload: user,

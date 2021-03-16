@@ -31,7 +31,6 @@ const Flights = ({
     );
     handleSelect(null);
   };
-  console.log(selectedFlight);
   const flightList = flights.map((flight) => (
     <FlightItem
       flight={flight}
