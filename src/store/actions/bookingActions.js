@@ -1,5 +1,5 @@
 import { CREATE_BOOK } from '../actions/types';
-import { CREATE_BOOKING } from "./types";
+import { CREATE_BOOKING } from './types';
 import instance from './instance';
 
 export const bookingCreateBE = (newBook) => {
@@ -15,16 +15,17 @@ export const bookingCreateBE = (newBook) => {
 			console.log(error);
 		}
 	};
+};
 export const bookingCreate = (flightId, history, roundtrip) => async (
-  dispatch
+	dispatch
 ) => {
-  await dispatch({
-    type: CREATE_BOOKING,
-    payload: { flightId },
-  });
-  history.push(
-    history.location.pathname === "/flightsearch" && roundtrip
-      ? "/returnFlights"
-      : "/booking"
-  ); //booking page not created yet
+	await dispatch({
+		type: CREATE_BOOKING,
+		payload: { flightId },
+	});
+	history.push(
+		history.location.pathname === '/flightsearch' && roundtrip
+			? '/returnFlights'
+			: '/booking'
+	); //booking page not created yet
 };
