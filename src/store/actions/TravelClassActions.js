@@ -1,4 +1,4 @@
-import { FETCH_TRAVELCLASSES } from "../actions/types";
+import { FETCH_TRAVELCLASSES } from "./types";
 import instance from "./instance";
 
 export const fetchTravelClasses = () => {

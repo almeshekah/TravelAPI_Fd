@@ -41,7 +41,6 @@ export const searchFlight = (filter, history) => {
     try {
       const res = await instance.post("/flights/search", filter);
       const { returnFlights, flights } = res.data;
-      console.log(returnFlights);
       await dispatch({
         type: FETCH_FLIGHTS,
         payload: {

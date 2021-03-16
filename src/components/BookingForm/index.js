@@ -40,7 +40,6 @@ const BookingForm = ({ passengersCount }) => {
 
   let passengersForms = [];
   for (const number in passengers) {
-    console.log(number);
     passengersForms.push(
       <PassengerForm
         passengers={passengers}
@@ -51,7 +50,6 @@ const BookingForm = ({ passengersCount }) => {
     );
   }
 
-  console.log(passengersForms);
   return (
     <>
       <FormStyled>

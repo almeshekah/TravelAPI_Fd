@@ -12,12 +12,6 @@ export const bookingCreate = (
     const chosenFlights = bookingReducer.flights;
     const flights = [chosenFlights.departing];
     if (chosenFlights.returning) flights.push(chosenFlights.returning);
-    console.log({
-      passengers,
-      flights,
-      travelClassId,
-      userId: user ? user.id : null,
-    });
     const res = await instance.post(`/booking`, {
       passengers,
       flights,
@@ -34,7 +28,7 @@ export const bookingCreate = (
   }
 };
 
-export const passangersDetails = (passengersCount, travelClassId) => {
+export const passengersDetails = (passengersCount, travelClassId) => {
   return {
     type: SET_DETAILS,
     payload: { passengersCount, travelClassId },
