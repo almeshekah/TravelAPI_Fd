@@ -16,7 +16,7 @@ import Flights from "../Flights";
 import Roundtrip from "../Flights/Roundtrip";
 import BookingForm from "../BookingForm";
 import Loading from "../Loading";
-import OrderHistory from '../OrderHistory';
+import OrderHistory from "../OrderHistory";
 
 const Routes = () => {
   const { flights, flightsLoading, returnFlights } = useSelector(
@@ -30,10 +30,10 @@ const Routes = () => {
 
   return (
     <Switch>
-    	<Route exact path="/user/order-history">
-				<OrderHistory />
-			</Route>
-    
+      <Route exact path="/user/order-history">
+        <OrderHistory />
+      </Route>
+
       <Route exact path="/user/profile">
         <Userprofile />
       </Route>
@@ -43,7 +43,7 @@ const Routes = () => {
       </Route>
 
       <Route exact path="/user/signin">
-        <UserSignin />
+        <UserSignin bookedFlights={bookedFlights} />
       </Route>
 
       <Route path="/airlines/signup">

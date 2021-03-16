@@ -7,7 +7,9 @@ import Loading from "../Loading";
 import PassengerForm from "./PassengerForm";
 //Styling
 import { FormStyled, FormAddButtonStyled } from "../../styles";
-
+import { Alert, AlertTitle } from "@material-ui/lab";
+import { Button } from "@material-ui/core";
+import { AlertContent } from "./styles";
 const BookingForm = ({ passengersCount }) => {
   const { user } = useSelector((state) => state.authReducer);
   const bookingReducer = useSelector((state) => state.bookingReducer);
@@ -26,6 +28,7 @@ const BookingForm = ({ passengersCount }) => {
     });
   }
   const [passengers, setPassengers] = useState(initialState);
+  const [guest, setGuest] = useState(false);
 
   const handleChange = (event) => {
     let passengersArr = passengers.slice();
@@ -52,6 +55,24 @@ const BookingForm = ({ passengersCount }) => {
 
   return (
     <>
+      {!user && !guest && (
+        <Alert severity="info">
+          <AlertTitle>Continue as guest?</AlertTitle>
+          You're not signed in!
+          <AlertContent>
+            <Button variant="contained" onClick={() => setGuest(true)}>
+              Continue as Guest
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => history.push("/user/signin")}
+            >
+              Sign in
+            </Button>
+          </AlertContent>
+        </Alert>
+      )}
       <FormStyled>
         <form onSubmit={handleSubmit}>
           {passengersForms}
