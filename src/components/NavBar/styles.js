@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
-// import { NavLink as Link } from "react-router-dom";
 
 export const Title = styled.h1`
   text-align: center;
@@ -34,7 +32,6 @@ export const UsernameStyled = styled.p`
   margin-right: 24px;
   display: flex;
   align-items: center;
-
   color: #a8dadc;
 `;
 

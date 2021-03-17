@@ -30,6 +30,13 @@ const NaveBar = () => {
           </NavLink>
           <NavLink to="/airlines/signup">Airline Signup</NavLink>
           <NavLink to="/airlines/signin">Airline Signin</NavLink>
+
+          {user && user.isAirline && (
+            <>
+                <NavbarLink to="/flights">Flights</NavbarLink>
+                <NavbarLink to="/airlines">Airlines</NavbarLink>
+            </>
+          )}
           {user ? (
             <>
               <UsernameStyled>Welcome , {user.username}! </UsernameStyled>
@@ -51,6 +58,7 @@ const NaveBar = () => {
           )}
         </NavMenu>
       </Nav>
+
     </>
   );
 };

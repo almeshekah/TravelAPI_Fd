@@ -1,5 +1,17 @@
-import styled from "styled-components";
-import { Typography } from "@material-ui/core";
+import styled, { css, keyframes } from "styled-components";
+import { Typography, Button } from "@material-ui/core";
+
+const activeAnim = keyframes`
+    0%   {
+        background-color: transparent;
+    }
+    50%  {
+        background-color: #fff;
+    }
+    100%  {
+        background-color: transparent;
+    }
+`;
 
 export const StyledPrice = styled(Typography)`
   text-align: right;
@@ -27,4 +39,13 @@ export const StyledMessage = styled.h1`
   text-align: center;
   margin: auto;
   color: #1d3557;
+`;
+
+export const TimeRangeButton = styled(Button)`
+  animation: ${(props) =>
+    props.active
+      ? css`
+          ${activeAnim} 0.35s linear
+        `
+      : "none"};
 `;
