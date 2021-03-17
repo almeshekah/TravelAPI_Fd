@@ -15,23 +15,23 @@ const FlightItem = ({ flight }) => {
           <title>Flights</title>
         </Helmet>
         <Table>
-          <TableBody>
-            <TableCell style={{ width: 100 }}>{flight.name}</TableCell>
-            <TableCell>{flight.departureDate}</TableCell>
-            <TableCell>{flight.departureTime}</TableCell>
-            <TableCell>{flight.arrivalTime}</TableCell>
-            <TableCell>{flight.departureAirport}</TableCell>
-            <TableCell>{flight.arrivalAirport}</TableCell>
-            <TableCell>{flight.economyPrice}</TableCell>
-            <TableCell>{flight.businessPrice}</TableCell>
-            <TableCell>{flight.airlineId}</TableCell>
-            <TableCell>
-              <UpdateButton
-                airlineId={flight.airlineId}
-                flightId={flight.id}
-              ></UpdateButton>
-            </TableCell>
-          </TableBody>
+          {/* <TableBody> */}
+          <TableCell style={{ width: 100 }}>{flight.name}</TableCell>
+          <TableCell>{flight.departureDate}</TableCell>
+          <TableCell>{flight.departureTime}</TableCell>
+          <TableCell>{flight.arrivalTime}</TableCell>
+          <TableCell>{flight.departureAirport}</TableCell>
+          <TableCell>{flight.arrivalAirport}</TableCell>
+          <TableCell>{flight.economyPrice}</TableCell>
+          <TableCell>{flight.businessPrice}</TableCell>
+          <TableCell>{flight.airlineId}</TableCell>
+          <TableCell>
+            <UpdateButton
+              airlineId={flight.airlineId}
+              flightId={flight.id}
+            ></UpdateButton>
+          </TableCell>
+          {/* </TableBody> */}
         </Table>
       </ItemWrapper>
     </>
