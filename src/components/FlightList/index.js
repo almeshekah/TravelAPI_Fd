@@ -5,8 +5,13 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import FlightItem from "./FlightItem";
 import { Title } from "./styles";
+import { useSelector } from "react-redux";
+import Loading from "../Loading";
 
 const FlightList = ({ flights }) => {
+  const loading = useSelector((state) => state.flightReducer.flightsLoading);
+  if (loading) return <Loading />;
+
   const flightList = flights.map((flight) => (
     <FlightItem flight={flight} key={flight.id} />
   ));

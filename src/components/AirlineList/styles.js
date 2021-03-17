@@ -9,6 +9,7 @@ export const ListWrapper = styled.div`
   flex: 1 0 21%;
   margin: 5px;
   // height: 100px;
+  color: #1d3557;
 `;
 
 export const Title = styled.h2`
@@ -23,6 +24,7 @@ export const Title = styled.h2`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #1d3557;
 `;
 
 export const ItemWrapper = styled.div`
@@ -32,4 +34,5 @@ export const ItemWrapper = styled.div`
     height: 200px;
   }
   text-align: center;
+  color: #1d3557;
 `;

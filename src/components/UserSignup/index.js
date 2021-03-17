@@ -80,8 +80,10 @@ const UserSignup = () => {
         <form onSubmit={handleSubmit}>
           <FieldSetStyled>
             <LegendStyled>
+              <h2>Sign Up</h2>
+
               <LabelStyled>
-                first Name :
+                First Name :
                 <InputFieldStyled
                   type="text"
                   name="firstName"
@@ -91,7 +93,7 @@ const UserSignup = () => {
               </LabelStyled>
 
               <LabelStyled>
-                last Name :
+                Last Name :
                 <InputFieldStyled
                   type="text"
                   name="lastName"
@@ -100,7 +102,7 @@ const UserSignup = () => {
                 />
               </LabelStyled>
               <LabelStyled>
-                passport:
+                Passport:
                 <InputFieldStyled
                   type="text"
                   name="passport"

@@ -9,8 +9,8 @@ export const HomeImage = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
-  height: 100%;
+  width: 25%;
+  height: 25%;
 `;
 
 export const Title = styled.h1`
