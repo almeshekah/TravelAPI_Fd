@@ -88,7 +88,7 @@ const Routes = () => {
       </Route>
 
       <Route path="/airlines/:airlineSlug">
-        <AirlineDetail />
+        <AirlineDetail flights={flights} />
       </Route>
 
       <Route path="/flights">

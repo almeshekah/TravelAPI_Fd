@@ -80,7 +80,16 @@ const FlightAdd = () => {
     const handleSubmit = (event) => {
       event.preventDefault();
       if (foundFlight) {
-        dispatch(updateFlight(flight, airline.id));
+        dispatch(
+          updateFlight(
+            {
+              ...flight,
+              originId: options.originId.value,
+              destinationId: options.destinationId.value,
+            },
+            airline.id
+          )
+        );
       } else {
         dispatch(
           createFlight(
