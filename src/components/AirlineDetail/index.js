@@ -2,7 +2,12 @@ import React from "react";
 import { useParams, Redirect, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
-import { DetailWrapper, GoButtonStyled } from "./styles";
+import {
+  DetailWrapper,
+  GoButtonStyled,
+  ButtonWrapper,
+  ItemWrapper,
+} from "./styles";
 import { AddButtonStyled } from "../../styles";
 import FlightList from "../FlightList";
 
@@ -27,17 +32,22 @@ const AirlineDetail = () => {
       <Helmet>
         <title>{airline.name}</title>
       </Helmet>
-      <Link to={`/airlines/${airline.id}/flights/new`}>
-        <AddButtonStyled>Add flights</AddButtonStyled>
-      </Link>
-      <Link to="/airlines">
-        <GoButtonStyled>Back to airlines</GoButtonStyled>
-      </Link>
-      <DetailWrapper>
+      <ItemWrapper>
         <h1>{airline.name}</h1>
-        <img src={airline.image} alt={airline.name} />
-        <FlightList flights={flights} key={flights.id} />
-      </DetailWrapper>
+        <img src={airline.logo} alt={airline.name} />
+      </ItemWrapper>
+      <ButtonWrapper>
+        <Link to={`/airlines/${airline.id}/flights/new`}>
+          <AddButtonStyled>Add flights</AddButtonStyled>
+        </Link>
+        <Link to="/airlines">
+          <GoButtonStyled>Back to airlines</GoButtonStyled>
+        </Link>
+      </ButtonWrapper>
+
+      <span>&nbsp;&nbsp;</span>
+
+      <FlightList flights={flights} key={flights.id} />
     </>
   );
 };

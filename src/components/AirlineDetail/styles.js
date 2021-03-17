@@ -6,27 +6,17 @@ export const DetailWrapper = styled.div`
   margin-right: auto;
   width: 80%;
   img {
-    width: 40%;
-    float: left;
+    align-self: flex-start;
+    max-width: 100%;
+    margin-top: 20px;
+    width: 20%;
   }
   p {
     vertical-align: middle;
   }
 `;
 
-export const ListWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-
-  align-items: center;
-  justify-content: center;
-  flex: 1 0 21%;
-  margin: 5px;
-  // height: 100px;
-`;
-
 export const GoButtonStyled = styled.button`
-  display: inline-block;
   border: none;
   padding: 10px 20px;
   margin: 5px;
@@ -35,22 +25,36 @@ export const GoButtonStyled = styled.button`
   text-decoration: none;
   color: #fff;
 
-  background-color: #1d3557;
+  background-color: #e63946;
   font-size: 15px;
   font-family: "Roboto", sans-serif;
-  // float: right;
-  // display: flex;
-  align-items: flex-start;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
   align-items: center;
   justify-content: center;
-  block {
-    display: block;
-    width: 100%;
+`;
+
+export const ImgWrapper = styled.img`
+  width: 100px;
+  height: 100px;
+`;
+
+export const ItemWrapper = styled.div`
+  margin: 20px;
+  img {
+    width: 200px;
+    height: 200px;
   }
-  &:focus {
-    outline: none;
-  }
-  &:active {
-    transform: scale(0.98);
-  }
+  text-align: center;
+  color: #1d3557;
+  display: flex;
+  flex-direction: column;
+  background-color: #fafdf9;
+  border: 1px solid grey;
+  border-radius: 5px;
+  width: 300px;
+  height: 300px;
+  padding: 25px;
 `;

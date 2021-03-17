@@ -16,52 +16,6 @@ export const Title = styled.h1`
 `;
 
 /* Navbar */
-export const NavBarStyled = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 2rem;
-  z-index: 1;
-  width: 100%;
-  border-bottom: solid 1px #f4f4f4;
-  opacity: 0.9;
-  margin-bottom: 1rem;
-  background: #1d3557;
-`;
-
-export const NavBarUlStyled = styled.ul`
-  display: flex;
-`;
-export const NavBarliStyled = styled.li`
-  list-style-type: none;
-
-  /* padding: 1rem 1.5rem;
-  color: #fff;
-  padding: 0.45rem;
-  margin: 0 0.25rem;
-  color: var(--primary-color);
-  text-transform: uppercase;
-  border-bottom: 3px transparent solid;
-  padding-bottom: 0.5rem;
-  transition: border-color 0.5s; */
-  display: flex;
-  text-decoration: none;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.7rem 2rem;
-  z-index: 1;
-  width: 100%;
-  opacity: 0.9;
-  margin-bottom: 1rem;
-
-  &:hover {
-    color: #eefbfb;
-  }
-`;
-
-export const NavbarWelcomeSpan = styled.nav`
-  margin-right: 0.6rem;
-`;
 
 export const NavbarLink = styled(Link)`
   color: #fff;
@@ -73,6 +27,80 @@ export const NavbarLink = styled(Link)`
 `;
 
 export const UsernameStyled = styled.p`
-  padding: 0.25em 1em;
-  color: black;
+  margin: 0 0.25rem;
+  padding: 0.45rem;
+  margin-right: 24px;
+  display: flex;
+  align-items: center;
+  color: #a8dadc;
+`;
+
+export const Nav = styled.nav`
+  background: #1d3557;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem calc((100vw - 1000px) / 2);
+  z-index: 10;
+`;
+
+export const NavLink = styled(Link)`
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+  &.active {
+    color: #a8dadc;
+  }
+`;
+
+export const Logo = styled.img`
+  display: none;
+  color: #fff;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 75%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+`;
+
+export const NavMenu = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: -24px;
+  /* Second Nav */
+  /* margin-right: 24px; */
+  /* Third Nav */
+  /* width: 100vw;
+  white-space: nowrap; */
+  /* @media screen and (max-width: 768px) {
+    display: none;
+  } */
+`;
+
+export const NavBtnLink = styled(Link)`
+  border-radius: 4px;
+  background: #a8dadc;
+  padding: 10px 22px;
+  color: #1d3557;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  /* Second Nav */
+  margin-left: 24px;
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+    color: #1d3557;
+  }
 `;

@@ -3,8 +3,9 @@ import Table from "@material-ui/core/Table";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import TableBody from "@material-ui/core/TableBody";
+
 import FlightItem from "./FlightItem";
-import { Title } from "./styles";
 import { useSelector } from "react-redux";
 import Loading from "../Loading";
 
@@ -18,7 +19,6 @@ const FlightList = ({ flights }) => {
 
   return (
     <div>
-      <Title>Flights</Title>
       <div>
         <Table size="small">
           <TableHead>
@@ -36,7 +36,7 @@ const FlightList = ({ flights }) => {
             </TableRow>
           </TableHead>
         </Table>
-        {flightList}
+        <TableBody>{flightList}</TableBody>
       </div>
     </div>
   );

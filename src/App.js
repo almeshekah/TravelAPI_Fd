@@ -8,6 +8,7 @@ function App() {
       <GlobalStyle />
 
       <NavBar />
+      <span>&nbsp;&nbsp;</span>
       <Routes />
     </>
   );

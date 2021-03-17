@@ -1,11 +1,4 @@
-import {
-  Title,
-  NavBarStyled,
-  NavBarUlStyled,
-  NavBarliStyled,
-  NavbarLink,
-  UsernameStyled,
-} from "./styles";
+import { Nav, NavLink, Bars, NavMenu, UsernameStyled } from "./styles";
 import { Logo } from "../../styles";
 import logo from "../../images/logo.png";
 
@@ -18,57 +11,54 @@ const NaveBar = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <NavBarStyled>
-        <Logo exact to="/">
-          <img className="navbar-brand" src={logo}></img>
-        </Logo>
-        {/* <Title>Travel</Title> */}
-        <NavBarUlStyled>
-          <NavBarliStyled>
-            <NavbarLink to="/">Home</NavbarLink>
-          </NavBarliStyled>
+      <Nav>
+        <NavLink to="/">
+          <img src={logo} alt="logo" style={{ width: "35%" }} />
+        </NavLink>
+
+        <NavMenu>
+          <NavLink to="/" activeStyle>
+            Home
+          </NavLink>
+
+          <NavLink to="/flights" activeStyle>
+            Flights
+          </NavLink>
+
+          <NavLink to="/airlines" activeStyle>
+            Airlines
+          </NavLink>
+          <NavLink to="/airlines/signup">Airline Signup</NavLink>
+          <NavLink to="/airlines/signin">Airline Signin</NavLink>
+
           {user && user.isAirline && (
             <>
-              <NavBarliStyled>
                 <NavbarLink to="/flights">Flights</NavbarLink>
-              </NavBarliStyled>
-              <NavBarliStyled>
                 <NavbarLink to="/airlines">Airlines</NavbarLink>
-              </NavBarliStyled>{" "}
             </>
           )}
           {user ? (
             <>
               <UsernameStyled>Welcome , {user.username}! </UsernameStyled>
-              <NavBarliStyled>
-                <NavbarLink onClick={() => dispatch(signout(history))}>
-                  Signout
-                </NavbarLink>
-              </NavBarliStyled>
-              <NavBarliStyled>
-                <NavbarLink
-                  onClick={() => dispatch(profile(user.id))}
-                  to="/user/profile"
-                >
-                  My Profile
-                </NavbarLink>
-              </NavBarliStyled>
+              <NavLink activeStyle onClick={() => dispatch(signout(history))}>
+                Signout
+              </NavLink>
+              <NavLink
+                onClick={() => dispatch(profile(user.id))}
+                to="/user/profile"
+              >
+                My Profile
+              </NavLink>
             </>
           ) : (
-            <NavBarliStyled>
-              <NavBarliStyled>
-                <NavbarLink to="/user/signup">Signup</NavbarLink>
-              </NavBarliStyled>
-              <NavBarliStyled>
-                <NavbarLink to="/user/signin">Signin</NavbarLink>
-              </NavBarliStyled>
-            </NavBarliStyled>
+            <>
+              <NavLink to="/user/signup">Signup</NavLink>
+              <NavLink to="/user/signin">Signin</NavLink>
+            </>
           )}
-          <NavBarliStyled>
-            <NavbarLink to="/airlines/signin">Airline Signin</NavbarLink>
-          </NavBarliStyled>
-        </NavBarUlStyled>
-      </NavBarStyled>
+        </NavMenu>
+      </Nav>
+
     </>
   );
 };
