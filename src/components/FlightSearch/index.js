@@ -13,7 +13,7 @@ import AirportSelect from "./AirportSelect";
 import { useHistory } from "react-router";
 import { passengersDetails } from "../../store/actions/bookingActions";
 
-const FlightSearch = () => {
+const FlightSearch = ({ selectedFlight, handleSelect }) => {
   const { destinations, destinationLoading } = useSelector(
     (state) => state.destinationReducer
   );
@@ -58,6 +58,7 @@ const FlightSearch = () => {
   };
 
   const handleSubmit = () => {
+    if (handleSelect) handleSelect(null);
     dispatch(passengersDetails(filter.passengers, options.travelClassId.value));
     dispatch(
       searchFlight(
@@ -71,6 +72,7 @@ const FlightSearch = () => {
           arrivalAirport: options.arrivalAirport.value,
           travelClassId: options.travelClassId.value,
         },
+        filter.roundtrip,
         history
       )
     );
