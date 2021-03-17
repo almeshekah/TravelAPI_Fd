@@ -3,7 +3,7 @@ import Select from "react-select";
 
 const AirportSelect = ({ options, handleOptions, _options, set }) => {
   return (
-    <div>
+    <div style={{ width: "300px" }}>
       <Select
         value={options[set]}
         onChange={handleOptions}

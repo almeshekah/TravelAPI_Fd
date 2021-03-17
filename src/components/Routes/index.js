@@ -19,7 +19,7 @@ import Loading from "../Loading";
 import OrderHistory from "../OrderHistory";
 
 const Routes = () => {
-  const { flights, flightsLoading, returnFlights } = useSelector(
+  const { flights, flightsLoading, returnFlights, roundtrip } = useSelector(
     (state) => state.flightReducer
   );
   const bookedFlights = useSelector((state) => state.bookingReducer.flights);
@@ -70,6 +70,8 @@ const Routes = () => {
           loading={flightsLoading}
           bookedFlights={bookedFlights}
           travelClassId={travelClassId}
+          airlines={airlines}
+          roundtrip={roundtrip}
         />
       </Route>
 
@@ -80,6 +82,8 @@ const Routes = () => {
           loading={flightsLoading}
           bookedFlights={bookedFlights}
           travelClassId={travelClassId}
+          roundtrip={roundtrip}
+          airlines={airlines}
         />
       </Route>
 

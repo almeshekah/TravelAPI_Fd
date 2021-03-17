@@ -27,12 +27,16 @@ const NaveBar = () => {
           <NavBarliStyled>
             <NavbarLink to="/">Home</NavbarLink>
           </NavBarliStyled>
-          <NavBarliStyled>
-            <NavbarLink to="/flights">Flights</NavbarLink>
-          </NavBarliStyled>
-          <NavBarliStyled>
-            <NavbarLink to="/airlines">Airlines</NavbarLink>
-          </NavBarliStyled>
+          {user && user.isAirline && (
+            <>
+              <NavBarliStyled>
+                <NavbarLink to="/flights">Flights</NavbarLink>
+              </NavBarliStyled>
+              <NavBarliStyled>
+                <NavbarLink to="/airlines">Airlines</NavbarLink>
+              </NavBarliStyled>{" "}
+            </>
+          )}
           {user ? (
             <>
               <UsernameStyled>Welcome , {user.username}! </UsernameStyled>
@@ -60,9 +64,6 @@ const NaveBar = () => {
               </NavBarliStyled>
             </NavBarliStyled>
           )}
-          <NavBarliStyled>
-            <NavbarLink to="/airlines/signup">Airline Signup</NavbarLink>
-          </NavBarliStyled>
           <NavBarliStyled>
             <NavbarLink to="/airlines/signin">Airline Signin</NavbarLink>
           </NavBarliStyled>

@@ -36,7 +36,7 @@ export const createFlight = (newFlight, airlineId) => {
   };
 };
 
-export const searchFlight = (filter, history) => {
+export const searchFlight = (filter, roundtrip, history) => {
   return async (dispatch) => {
     try {
       const res = await instance.post("/flights/search", filter);
@@ -46,6 +46,7 @@ export const searchFlight = (filter, history) => {
         payload: {
           flights,
           returnFlights,
+          roundtrip,
         },
       });
       history.push("/flightsearch");
