@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //styling
 import { Search, People, FlightLand, FlightTakeoff } from "@material-ui/icons/";
-import { Button, Input } from "@material-ui/core";
+import { Button, Input, Grid } from "@material-ui/core";
 import { StyledFormControl } from "./styles";
 //Components
 import Loading from "../Loading";
@@ -28,8 +28,8 @@ const FlightSearch = ({
   const dispatch = useDispatch();
   const history = useHistory();
   const [options, setOptions] = useState({
-    arrivalAirport: null,
-    departureAirport: null,
+    arrivalAirport: 18,
+    departureAirport: 20,
   });
   const [filter, setFilter] = useState({
     passengers: 2,
@@ -84,68 +84,74 @@ const FlightSearch = ({
     );
   };
   return (
-    <StyledFormControl>
-      <h3>Departure Date</h3>
-      <DatePicker filter={filter} setFilter={setFilter} set="departureDate" />
-      {filter.roundtrip && (
-        <>
-          <h3>Return Date</h3>
-          <DatePicker filter={filter} setFilter={setFilter} set="returnDate" />
-        </>
-      )}
-      <h3>
-        Number of Passengers <People />
-      </h3>
-      <Input
-        id="my-input"
-        min={1}
-        type="number"
-        name="passengers"
-        value={filter.passengers}
-        onChange={handleChange}
-      />
-      <h3>
-        Departure Airport <FlightTakeoff />
-      </h3>
-      <AirportSelect
-        options={options}
-        handleOptions={handleOptions}
-        _options={departureOptions}
-        set="departureAirport"
-      />
-      <h3>
-        Arrival Airport <FlightLand />
-      </h3>
-      <AirportSelect
-        options={options}
-        handleOptions={handleOptions}
-        _options={arrivalOptions}
-        set="arrivalAirport"
-      />
-      <h3>Travel Class</h3>
-      <AirportSelect
-        options={options}
-        handleOptions={handleOptions}
-        _options={travelClassOptions}
-        set="travelClassId"
-      />
-      <Button
-        color="primary"
-        onClick={() => setFilter({ ...filter, roundtrip: !filter.roundtrip })}
-      >
-        {filter.roundtrip ? "Roundtrip" : "One-way"}
-      </Button>
+    <Grid container justify="center">
+      <StyledFormControl>
+        <h3>Departure Date</h3>
+        <DatePicker filter={filter} setFilter={setFilter} set="departureDate" />
+        {filter.roundtrip && (
+          <>
+            <h3>Return Date</h3>
+            <DatePicker
+              filter={filter}
+              setFilter={setFilter}
+              set="returnDate"
+            />
+          </>
+        )}
+        <h3>
+          Number of Passengers <People />
+        </h3>
+        <Input
+          id="my-input"
+          min={1}
+          type="number"
+          name="passengers"
+          value={filter.passengers}
+          onChange={handleChange}
+        />
+        <h3>
+          Departure Airport <FlightTakeoff />
+        </h3>
+        <AirportSelect
+          options={options}
+          handleOptions={handleOptions}
+          _options={departureOptions}
+          set="departureAirport"
+        />
+        <h3>
+          Arrival Airport <FlightLand />
+        </h3>
+        <AirportSelect
+          options={options}
+          handleOptions={handleOptions}
+          _options={arrivalOptions}
+          set="arrivalAirport"
+        />
+        <h3>Travel Class</h3>
+        <AirportSelect
+          options={options}
+          handleOptions={handleOptions}
+          _options={travelClassOptions}
+          set="travelClassId"
+        />
+        <Button
+          color="primary"
+          onClick={() => setFilter({ ...filter, roundtrip: !filter.roundtrip })}
+        >
+          {filter.roundtrip ? "Roundtrip" : "One-way"}
+        </Button>
 
-      <Button
-        variant="contained"
-        color="primary"
-        fullWidth
-        onClick={handleSubmit}
-      >
-        <Search />
-        Search Flights
-      </Button>
-    </StyledFormControl>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          onClick={handleSubmit}
+        >
+          <Search />
+          Search Flights
+        </Button>
+      </StyledFormControl>
+    </Grid>
   );
 };
 

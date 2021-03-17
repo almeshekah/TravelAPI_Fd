@@ -26,7 +26,7 @@ export const NavBarStyled = styled.div`
   border-bottom: solid 1px #f4f4f4;
   opacity: 0.9;
   margin-bottom: 1rem;
-  background: #003699;
+  background: #1d3557;
 `;
 
 export const NavBarUlStyled = styled.ul`
@@ -61,36 +61,6 @@ export const NavBarliStyled = styled.li`
 
 export const NavbarWelcomeSpan = styled.nav`
   margin-right: 0.6rem;
-`;
-
-export const AuthButtonStyled = styled.button`
-  display: inline-block;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  color: #000;
-  background-color: #dc3545;
-  font-size: 15px;
-  font-family: "Roboto", sans-serif;
-  // float: right;
-  // display: flex;
-  align-items: flex-start;
-  align-items: center;
-  justify-content: center;
-  block {
-    display: block;
-    width: 100%;
-  }
-  &:focus {
-    outline: none;
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
 `;
 
 export const NavbarLink = styled(Link)`
