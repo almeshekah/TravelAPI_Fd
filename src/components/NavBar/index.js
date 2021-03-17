@@ -21,20 +21,10 @@ const NaveBar = () => {
             Home
           </NavLink>
 
-          <NavLink to="/flights" activeStyle>
-            Flights
-          </NavLink>
-
-          <NavLink to="/airlines" activeStyle>
-            Airlines
-          </NavLink>
-          <NavLink to="/airlines/signup">Airline Signup</NavLink>
-          <NavLink to="/airlines/signin">Airline Signin</NavLink>
-
           {user && user.isAirline && (
             <>
-                <NavbarLink to="/flights">Flights</NavbarLink>
-                <NavbarLink to="/airlines">Airlines</NavbarLink>
+              <NavLink to="/flights">Flights</NavLink>
+              <NavLink to="/airlines">Airlines</NavLink>
             </>
           )}
           {user ? (
@@ -54,11 +44,12 @@ const NaveBar = () => {
             <>
               <NavLink to="/user/signup">Signup</NavLink>
               <NavLink to="/user/signin">Signin</NavLink>
+              <NavLink to="/airlines/signup">Airline Signup</NavLink>
+              <NavLink to="/airlines/signin">Airline Signin</NavLink>
             </>
           )}
         </NavMenu>
       </Nav>
-
     </>
   );
 };
