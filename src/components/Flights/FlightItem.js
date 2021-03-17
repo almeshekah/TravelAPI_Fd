@@ -6,7 +6,6 @@ import {
   Typography,
   CardContent,
   CardActions,
-  Card,
 } from "@material-ui/core";
 import { Flight, DateRange, Schedule } from "@material-ui/icons/";
 import { StyledPrice, StyledCard, StyledImage } from "./styles";

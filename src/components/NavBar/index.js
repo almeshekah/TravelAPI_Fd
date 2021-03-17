@@ -6,17 +6,23 @@ import {
   NavbarLink,
   UsernameStyled,
 } from "./styles";
+import { Logo } from "../../styles";
+import logo from "../../images/logo.png";
+
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signout, profile } from "../../store/actions/authActions";
 const NaveBar = () => {
-	const history = useHistory();
+  const history = useHistory();
   const user = useSelector((state) => state.authReducer.user);
   const dispatch = useDispatch();
   return (
     <>
       <NavBarStyled>
-        <Title>Travel</Title>
+        <Logo exact to="/">
+          <img className="navbar-brand" src={logo}></img>
+        </Logo>
+        {/* <Title>Travel</Title> */}
         <NavBarUlStyled>
           <NavBarliStyled>
             <NavbarLink to="/">Home</NavbarLink>
@@ -29,7 +35,7 @@ const NaveBar = () => {
           </NavBarliStyled>
           {user ? (
             <>
-              <UsernameStyled>welcome , {user.username}! </UsernameStyled>
+              <UsernameStyled>Welcome , {user.username}! </UsernameStyled>
               <NavBarliStyled>
                 <NavbarLink onClick={() => dispatch(signout(history))}>
                   Signout

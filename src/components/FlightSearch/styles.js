@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FormControl } from "@material-ui/core";
+import { Button, Input, Grid } from "@material-ui/core";
 
 export const StyledFormControl = styled(FormControl)`
   display: flex;
@@ -10,7 +11,7 @@ export const StyledFormControl = styled(FormControl)`
     justify-content: space-between;
     width: 559px;
     padding: 10px;
-    background-color: white;
+    background-color: #1d3557;
     position: absolute;
     left: 0;
     top: 380px;
@@ -25,6 +26,7 @@ export const StyledFormControl = styled(FormControl)`
         display: flex;
         flex-wrap: wrap;
         align-content: center;
+        color: #1d3557;
       }
     }
     .date {
@@ -32,6 +34,7 @@ export const StyledFormControl = styled(FormControl)`
       display: flex;
       flex-wrap: wrap;
       align-content: center;
+      color: #1d3557;
     }
   }
 `;
