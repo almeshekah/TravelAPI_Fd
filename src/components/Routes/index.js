@@ -92,7 +92,7 @@ const Routes = () => {
       </Route>
 
       <Route path="/flights">
-        <FlightList />
+        <FlightList flights={flights} />
       </Route>
 
       <Route path="/airlines">

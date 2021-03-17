@@ -57,6 +57,11 @@ const Flights = ({
         });
   };
 
+  const maxPrice = Math.max(
+    ...flights.map(
+      (flight) => flight[`${travelClassId === 1 ? "economy" : "business"}Price`]
+    )
+  );
   //Filters
   flights = priceFilter(
     flights,
@@ -112,7 +117,7 @@ const Flights = ({
             }
             valueLabelDisplay="auto"
             aria-labelledby="range-slider"
-            max={500}
+            max={maxPrice + 10}
           />
         </div>
         {airlineCheckbox}
@@ -123,6 +128,8 @@ const Flights = ({
           <FlightSearch
             selectedFlight={selectedFlight}
             handleSelect={handleSelect}
+            setQuery={setFilter}
+            initialState={initialState}
           />
         </Grid>
         <Grid item xs={9}>
