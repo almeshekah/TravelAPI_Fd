@@ -4,18 +4,18 @@ import { ItemWrapper } from "./styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
 
 import UpdateButton from "../buttons/UpdateButton";
 
 const FlightItem = ({ flight }) => {
   return (
     <>
-      <ItemWrapper>
-        <Helmet>
-          <title>Flights</title>
-        </Helmet>
-        <Table>
-          {/* <TableBody> */}
+      <Helmet>
+        <title>Flights</title>
+      </Helmet>
+      <Table>
+        <TableRow>
           <TableCell style={{ width: 100 }}>{flight.name}</TableCell>
           <TableCell>{flight.departureDate}</TableCell>
           <TableCell>{flight.departureTime}</TableCell>
@@ -31,9 +31,8 @@ const FlightItem = ({ flight }) => {
               flightId={flight.id}
             ></UpdateButton>
           </TableCell>
-          {/* </TableBody> */}
-        </Table>
-      </ItemWrapper>
+        </TableRow>
+      </Table>
     </>
   );
 };

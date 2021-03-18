@@ -1,13 +1,7 @@
 import { CREATE_BOOKING, SET_DETAILS, SET_FLIGHTS } from "./types";
 import instance from "./instance";
-import { Alert, AlertTitle } from "@material-ui/lab";
-const bookingAlert = () => {
-  <Alert severity="success">
-    <AlertTitle>Booking successful</AlertTitle>
-    Your booking has been completed successfully. A confirmation email has been
-    sent.
-  </Alert>;
-};
+import { toast } from "react-toastify";
+
 export const bookingCreate = (
   passengers,
   bookingReducer,
@@ -29,8 +23,8 @@ export const bookingCreate = (
       type: CREATE_BOOKING,
       payload: res.data,
     });
+    toast.success("Your booking has been confirmed!");
     history.push("/");
-    bookingAlert();
   } catch (error) {
     console.log(error);
   }

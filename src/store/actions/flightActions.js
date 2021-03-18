@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { FETCH_FLIGHTS, CREATE_FLIGHT, UPDATE_FLIGHT } from "../actions/types";
 
 import instance from "./instance";
@@ -20,16 +21,15 @@ export const fetchFlights = () => {
 export const createFlight = (newFlight, airlineId) => {
   return async (dispatch) => {
     try {
-      // console.log(newFlight);
       const res = await instance.post(
         `/airlines/${airlineId}/flights`,
         newFlight
       );
-
-      dispatch({
+      await dispatch({
         type: CREATE_FLIGHT,
         payload: { newFlight: res.data },
       });
+      toast.success("Flight created successfuly!");
     } catch (error) {
       console.log(error);
     }
@@ -49,7 +49,9 @@ export const searchFlight = (filter, roundtrip, history) => {
           roundtrip,
         },
       });
-      history.push("/flightsearch");
+      if (flights.length && (!roundtrip || returnFlights.length))
+        history.push("/flightsearch");
+      else toast.error("No flights available for your search criteria 😌");
     } catch (error) {
       console.log(error);
     }
@@ -63,11 +65,11 @@ export const updateFlight = (updatedFlight, airlineId) => {
         `/airlines/${airlineId}/flights/${updatedFlight.id}`,
         updatedFlight
       );
-
-      dispatch({
+      await dispatch({
         type: UPDATE_FLIGHT,
         payload: { updatedFlight: res.data },
       });
+      toast.success("Flight updated successfuly!");
     } catch (error) {
       console.log("Error:", error);
     }

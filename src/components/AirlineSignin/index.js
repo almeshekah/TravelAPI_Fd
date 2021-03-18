@@ -90,7 +90,7 @@ const AirlineSignin = () => {
               </LabelStyled>
 
               <FormAddButtonStyled onSubmit={handleSubmit}>
-                Airline Sign In
+                Sign In
               </FormAddButtonStyled>
             </LegendStyled>
           </FieldSetStyled>

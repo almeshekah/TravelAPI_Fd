@@ -72,10 +72,9 @@ export const airlinesignup = (newAirline, history) => {
       for (const key in newAirline) formData.append(key, newAirline[key]);
       const res = await instance.post("/airlines/signup", formData);
       localStorage.setItem("myToken", res.data.token);
-      dispatch(setUser(res.data.token));
-
+      await dispatch(setUser(res.data.token));
       history.replace("/");
-      console.log("Your user has been created successfully");
+      toast.success("Signed up successfuly!");
     } catch (error) {
       console.log(error);
     }
@@ -89,7 +88,7 @@ export const airlinesignin = (user, history) => {
       localStorage.setItem("myToken", res.data.token);
       dispatch(setUser(res.data.token));
       history.replace("/");
-      console.log("You have signed in successfully");
+      toast.success("Signed in successfuly!");
     } catch (error) {
       console.log(error);
     }
@@ -99,6 +98,7 @@ export const airlinesignin = (user, history) => {
 export const airlinesignout = () => {
   localStorage.removeItem("myToken");
   delete instance.defaults.headers.common.Authorization;
+  toast.success("Signed out successfuly!");
   return {
     type: SET_USER,
     payload: null,
@@ -134,10 +134,11 @@ export const profile = (userId) => async (dispatch) => {
 export const updateProfile = (user) => async (dispatch) => {
   try {
     await instance.put(`/user/Updateprofile`, user);
-    dispatch({
+    await dispatch({
       type: UPDATE_PROFILE,
       payload: user,
     });
+    toast.success("Profile updated!");
   } catch (error) {
     console.log("ERROR: ", error);
   }

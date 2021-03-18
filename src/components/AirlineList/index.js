@@ -1,11 +1,14 @@
 import React from "react";
 import { ListWrapper, Title } from "./styles";
 import AirlineItem from "./AirlineItem";
+import { useSelector } from "react-redux";
 
 const AirlineList = ({ airlines }) => {
-  const airlineList = airlines.map((airline) => (
-    <AirlineItem airline={airline} key={airline.id} />
-  ));
+  const { user } = useSelector((state) => state.authReducer);
+
+  const airlineList = airlines
+    .filter((airline) => airline.name === user.name)
+    .map((airline) => <AirlineItem airline={airline} key={airline.id} />);
 
   return (
     <div>
