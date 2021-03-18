@@ -20,23 +20,28 @@ const FlightList = ({ flights }) => {
   return (
     <div>
       <div>
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell>Flight Name</TableCell>
-              <TableCell>Departure Date</TableCell>
-              <TableCell>Arrival Date</TableCell>
-              <TableCell>Departure Time</TableCell>
-              <TableCell>Arrival Time</TableCell>
-              <TableCell>Departure Airport</TableCell>
-              <TableCell>Arrival Airport</TableCell>
-              <TableCell>Economy Price</TableCell>
-              <TableCell>Business Price</TableCell>
-              <TableCell>Airline</TableCell>
-            </TableRow>
-          </TableHead>
-        </Table>
-        <TableBody>{flightList}</TableBody>
+        <div className="container mt-5">
+          <div className="row justify-content-md-center">
+            <div className="col-20">
+              <table className="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Flight Name</th>
+                    <th scope="col">Departure Date</th>
+                    <th scope="col">Departure Time</th>
+                    <th scope="col">Arrival Time</th>
+                    <th scope="col">Economy Price</th>
+                    <th scope="col">Business Price</th>
+                    <th scope="col">Update</th>
+                  </tr>
+                </thead>
+                <tbody>{flightList}</tbody>
+              </table>
+            </div>
+
+            <div className="col-4"></div>
+          </div>
+        </div>
       </div>
     </div>
   );
