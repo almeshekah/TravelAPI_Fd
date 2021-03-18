@@ -27,17 +27,16 @@ const NaveBar = () => {
               <NavLink to="/airlines">Airlines</NavLink>
             </>
           )}
+          {user && !user.isAirline && (
+            <NavLink onClick={() => dispatch(profile(user.id))} to="profile">
+              Profile
+            </NavLink>
+          )}
           {user ? (
             <>
               <UsernameStyled>Welcome , {user.username}! </UsernameStyled>
               <NavLink activeStyle onClick={() => dispatch(signout(history))}>
                 Signout
-              </NavLink>
-              <NavLink
-                onClick={() => dispatch(profile(user.id))}
-                to="/user/profile"
-              >
-                My Profile
               </NavLink>
             </>
           ) : (

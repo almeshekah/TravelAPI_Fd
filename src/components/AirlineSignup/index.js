@@ -108,7 +108,7 @@ const AirlineSignup = () => {
                 {errors.password && <p>Pass is required!!</p>}
               </LabelStyled>
               <LabelStyled>
-                Picture:
+                Logo:
                 <InputFieldStyled
                   type="file"
                   name="logo"
@@ -125,7 +125,7 @@ const AirlineSignup = () => {
               </LabelStyled>
 
               <FormAddButtonStyled onSubmit={handleSubmit}>
-                Airline Sign Up
+                Sign Up
               </FormAddButtonStyled>
             </LegendStyled>
           </FieldSetStyled>

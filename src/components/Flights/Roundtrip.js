@@ -118,7 +118,11 @@ const Roundtrip = ({
     </div>
   ));
 
-  if (flightList.length === 0 && selectedFlight) handleSelect(null);
+  if (
+    selectedFlight &&
+    !returnFlights.some((flight) => flight.id == selectedFlight)
+  )
+    handleSelect(null);
 
   return (
     <>
