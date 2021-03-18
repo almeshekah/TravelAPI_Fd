@@ -33,11 +33,8 @@ const NaveBar = () => {
               <NavLink activeStyle onClick={() => dispatch(signout(history))}>
                 Signout
               </NavLink>
-              <NavLink
-                onClick={() => dispatch(profile(user.id))}
-                to="/user/profile"
-              >
-                My Profile
+              <NavLink onClick={() => dispatch(profile(user.id))} to="profile">
+                Profile
               </NavLink>
             </>
           ) : (

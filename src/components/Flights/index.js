@@ -99,7 +99,8 @@ const Flights = ({
     </div>
   ));
 
-  if (flightList.length === 0 && selectedFlight) handleSelect(null);
+  if (selectedFlight && !flights.some((flight) => flight.id == selectedFlight))
+    handleSelect(null);
 
   return (
     <>
@@ -136,8 +137,8 @@ const Flights = ({
           <StyledList>
             {flightList.length === 0 ? (
               <StyledMessage>
-                No departingFlight flights available 😔 Please adjust your
-                search criteria.
+                No departing flights available 😔 Please adjust your search
+                criteria.
               </StyledMessage>
             ) : (
               flightList

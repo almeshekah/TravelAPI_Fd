@@ -1,62 +1,52 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { DetailWrapper } from './styles';
-import Loading from '../Loading';
-import { useSelector, useDispatch } from 'react-redux';
-import { history } from '../../store/actions/authActions';
-import { ItemWrapper } from './styles';
+import React from "react";
+import { Link } from "react-router-dom";
+import { DetailWrapper } from "./styles";
+import Loading from "../Loading";
+import { useSelector, useDispatch } from "react-redux";
+import { history } from "../../store/actions/authActions";
+import { ItemWrapper } from "./styles";
 
 const Userprofile = () => {
-	const dispatch = useDispatch();
-	const profile = useSelector((state) => state.authReducer.profile);
-	const loading = useSelector((state) => state.authReducer.loading);
-	if (loading) return <Loading />;
+  const dispatch = useDispatch();
+  const profile = useSelector((state) => state.authReducer.profile);
+  const loading = useSelector((state) => state.authReducer.loading);
+  if (loading) return <Loading />;
 
-	return (
-		<>
-			<ItemWrapper>
-				<h1 style={{ marginBottom: '2%', marginLeft: '2.5%', marginTop: '2%' }}>
-					{profile.lastName}
-				</h1>
-				<img
-					src={profile.picture}
-					alt={profile.firstName}
-					// style={{
-					//   borderRadius: "50%",
-					//   border: "2px solid transparent",
-					//   width: "20%",
-					// }}
-				/>
-				<p>
-					my name :{profile.firstName}
-					{profile.lastName}
-				</p>
-				<p>passport:{profile.passport}</p>
-				<p>email:{profile.email}</p>
-			</ItemWrapper>
-			<DetailWrapper>
-				<Link to="/user/profile/edit">
-					<button
-						type="button"
-						className="btn btn-dark "
-						style={{ position: 'absolute', left: '1030px', top: '240px' }}
-					>
-						Edit My Profile
-					</button>
-				</Link>
+  return (
+    <ItemWrapper>
+      <h1 style={{ marginBottom: "2%", marginLeft: "2.5%", marginTop: "2%" }}>
+        {profile.username}
+      </h1>
+      <img
+        src={
+          profile.picture ??
+          "https://www.kindpng.com/picc/m/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png"
+        }
+        alt={profile.firstName}
+        // style={{
+        //   borderRadius: "50%",
+        //   border: "2px solid transparent",
+        //   width: "20%",
+        // }}
+      />
+      <p>{`Name: ${profile.firstName} ${profile.lastName}`}</p>
+      <p>{`Passport: ${profile.passport}`}</p>
+      <p>{`Email: ${profile.email}`}</p>
+      <div className="buttons">
+        <Link to="/profile/edit">
+          <button type="button" className="btn btn-dark ">
+            Edit My Profile
+          </button>
+        </Link>
 
-				<Link onClick={() => dispatch(history())} to="/user/order-history">
-					<button
-						type="button"
-						className="btn btn-dark "
-						style={{ position: 'absolute', left: '1030px', top: '350px' }}
-					>
-						My Orders History
-					</button>
-				</Link>
-			</DetailWrapper>
-		</>
-	);
+        <Link onClick={() => dispatch(history())} to="/order-history">
+          <button type="button" className="btn btn-dark ">
+            My Orders History
+          </button>
+        </Link>
+      </div>
+    </ItemWrapper>
+  );
 };
 
 export default Userprofile;

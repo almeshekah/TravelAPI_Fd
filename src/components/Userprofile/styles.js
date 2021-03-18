@@ -15,10 +15,11 @@ export const DetailWrapper = styled.div`
 `;
 
 export const ItemWrapper = styled.div`
-  margin: 20px;
+  margin-left: 700px;
   img {
     width: 200px;
     height: 200px;
+    margin-left: 75px;
   }
   text-align: center;
   color: #1d3557;
